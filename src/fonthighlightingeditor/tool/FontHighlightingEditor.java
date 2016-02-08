@@ -28,11 +28,13 @@ package fonthighlightingeditor.tool;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+import fonthighlightingeditor.constants.FontHighlightingConstants;
 import processing.app.Base;
 import processing.app.tools.Tool;
 import processing.app.ui.Editor;
 
 public class FontHighlightingEditor implements Tool {
+	Base base;
 	Editor editor;
 	static FontHighlightingFrame frame;
 
@@ -41,7 +43,7 @@ public class FontHighlightingEditor implements Tool {
 	}
 
 	public void init(Base base) {
-		editor = base.getActiveEditor();
+		this.base = base;
 	}
 
 	public void run() {
@@ -53,25 +55,23 @@ public class FontHighlightingEditor implements Tool {
 					try {
 						// Limit to one window instance
 						if (frame == null) {
-							frame = new FontHighlightingFrame(editor);
+							frame = new FontHighlightingFrame(base);
 
 							// Don't close the entire PDE along with the tool
 							frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-							System.out.println(
-									"##tool.name## v. ##tool.prettyVersion## by ##author.name##.\nPlease report any issues at ##source.url##");
-
+							System.out.println(FontHighlightingConstants.STARTUP_INFO);
 						} else {
 							frame.setVisible(true);
 						}
 					} catch (Exception e) {
-						System.out.println("Exception at invokeLater() -> run()");
+						System.out.println(FontHighlightingConstants.INVOKELATER_INNER_EXCEPTION);
 						e.printStackTrace();
 					}
 				}
 			});
 		} catch (Exception e) {
-			System.out.println("Exception at invokeLater()");
+			System.out.println(FontHighlightingConstants.INVOKELATER_OUTER_EXCEPTION);
 			e.printStackTrace();
 		}
 	}
