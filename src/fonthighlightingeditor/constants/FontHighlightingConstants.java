@@ -46,7 +46,7 @@ public class FontHighlightingConstants {
 	public static final String TOOL_NAME = "##tool.name##";
 	public static final String STARTUP_INFO = TOOL_NAME + " v. ##tool.prettyVersion## by ##author.name##.\n"
 			+ "Please report any issues at ##source.url##\n";
-
+	public static final String TEXTAREA_INFO = "Use this tool to modify PDE's color highlighting settings.\n(Hover over the name of each setting to display info)";
 	public static final String COMMENT1_NAME = "comment1: ";
 	public static final String COMMENT1_TOOLTIP = "Used to mark a comment.";
 }
