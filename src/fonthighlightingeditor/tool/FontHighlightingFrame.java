@@ -27,7 +27,6 @@ package fonthighlightingeditor.tool;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +35,6 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import processing.app.Base;
-import processing.app.ui.Editor;
 
 import fonthighlightingeditor.constants.FontHighlightingConstants;
 import fonthighlightingeditor.utils.FontHighlightingHelpers;
@@ -45,7 +43,8 @@ public class FontHighlightingFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private Base base;
-	GroupLayout layout;
+
+	private GroupLayout layout;
 
 	private JTextField comment1DisabledField;
 	private JTextField comment2DisabledField;
@@ -115,14 +114,17 @@ public class FontHighlightingFrame extends JFrame {
 			final JButton btnCancel = new JButton("Cancel");
 			btnCancel.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					dispose();
+					disposeFrame();
 				}
 			});
+
+			// These are still TBA - disable for now
 
 			final JButton btnImport = new JButton("Import");
 			btnImport.setEnabled(false);
 			final JButton btnExport = new JButton("Export");
 			btnExport.setEnabled(false);
+
 			/*
 			 * Setup a series of control groups:
 			 * 
@@ -721,6 +723,11 @@ public class FontHighlightingFrame extends JFrame {
 			getContentPane().setLayout(layout);
 
 			// Wrapping up - set a preferred size, center the frame and display
+			addWindowListener(new WindowAdapter() {
+				public void windowClosing(WindowEvent e) {
+					disposeFrame();
+				}
+			});
 
 			setPreferredSize(new Dimension(540, 300));
 			setResizable(false);
@@ -763,44 +770,16 @@ public class FontHighlightingFrame extends JFrame {
 			FontHighlightingHelpers.setPreference("operator", operatorDisabledField.getBackground());
 			FontHighlightingHelpers.setPreference("bgcolor", bgColorDisabledField.getBackground());
 
-			/*
-			 * 3.0.2 and lower
-			 */
-			if (Base.getRevision() <= 249) {
-				JOptionPane.showMessageDialog(null, "A restart is required to apply the changes.", "Warning",
-						JOptionPane.WARNING_MESSAGE);
-			} else {
-				/*
-				 * Reflection hack - otherwise this would cause a compile-time
-				 * error on <3.0.2
-				 */
-				for (Editor editor : base.getEditors()) {
-					// editor.applyPreferences();
-					Method m = null;
-					try {
-						m = editor.getClass().getDeclaredMethod("applyPreferences", null);
-					} catch (NoSuchMethodException e) {
-						e.printStackTrace();
-					} catch (SecurityException e) {
-						e.printStackTrace();
-					}
-					m.setAccessible(true);
-					try {
-						m.invoke(editor, null);
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
-					} catch (InvocationTargetException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-
-			this.dispose();
+			JOptionPane.showMessageDialog(null, "A restart is required to apply the changes.", "Warning",
+					JOptionPane.WARNING_MESSAGE);
+			disposeFrame();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+	}
+
+	public void disposeFrame() {
+		dispose();
 	}
 }

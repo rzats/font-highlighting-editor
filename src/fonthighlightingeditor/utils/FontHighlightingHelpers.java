@@ -45,8 +45,10 @@ public class FontHighlightingHelpers {
 	}
 
 	/**
+	 * Sets a Processing preference by a given shortened alias
+	 * 
 	 * @param preferenceName
-	 *            The name of the preference
+	 *            The shortened alias of the preference
 	 * @param color
 	 *            The color the preference will be set to
 	 */

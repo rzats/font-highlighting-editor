@@ -25,13 +25,13 @@
 
 package fonthighlightingeditor.tool;
 
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
-import fonthighlightingeditor.constants.FontHighlightingConstants;
 import processing.app.Base;
 import processing.app.tools.Tool;
 import processing.app.ui.Editor;
+
+import fonthighlightingeditor.constants.FontHighlightingConstants;
 
 public class FontHighlightingEditor implements Tool {
 	Base base;
@@ -53,17 +53,12 @@ public class FontHighlightingEditor implements Tool {
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						// Limit to one window instance
-						if (frame == null) {
-							frame = new FontHighlightingFrame(base);
+						frame = new FontHighlightingFrame(base);
 
-							// Don't close the entire PDE along with the tool
-							frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+						// Don't close the entire PDE along with the tool
+						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-							System.out.println(FontHighlightingConstants.STARTUP_INFO);
-						} else {
-							frame.setVisible(true);
-						}
+						System.out.println(FontHighlightingConstants.STARTUP_INFO);
 					} catch (Exception e) {
 						System.out.println(FontHighlightingConstants.INVOKELATER_INNER_EXCEPTION);
 						e.printStackTrace();
