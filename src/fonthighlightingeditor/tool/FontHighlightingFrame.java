@@ -152,8 +152,12 @@ public class FontHighlightingFrame extends JFrame {
 			 * 
 			 */
 
+			String currentPref;
 			// comment1
-			final JLabel comment1InfoLabel = new JLabel("comment1: ");
+
+			currentPref = "comment1";
+
+			final JLabel comment1InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
 
 			final JLabel comment1HashLabel = new JLabel("#");
 
@@ -164,7 +168,10 @@ public class FontHighlightingFrame extends JFrame {
 			comment1DisabledField.setColumns(10);
 
 			// comment2
-			final JLabel comment2InfoLabel = new JLabel("comment2: ");
+
+			currentPref = "comment2";
+
+			final JLabel comment2InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
 
 			final JLabel comment2HashLabel = new JLabel("#");
 
@@ -175,7 +182,9 @@ public class FontHighlightingFrame extends JFrame {
 			comment2DisabledField.setColumns(10);
 
 			// function1
-			final JLabel function1InfoLabel = new JLabel("function1: ");
+			currentPref = "function1";
+
+			final JLabel function1InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
 
 			final JLabel function1HashLabel = new JLabel("#");
 
@@ -186,7 +195,9 @@ public class FontHighlightingFrame extends JFrame {
 			function1DisabledField.setColumns(10);
 
 			// function2
-			final JLabel function2InfoLabel = new JLabel("function2: ");
+			currentPref = "function2";
+
+			final JLabel function2InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
 
 			final JLabel function2HashLabel = new JLabel("#");
 
@@ -197,7 +208,9 @@ public class FontHighlightingFrame extends JFrame {
 			function2DisabledField.setColumns(10);
 
 			// function3
-			final JLabel function3InfoLabel = new JLabel("function3: ");
+			currentPref = "function3";
+
+			final JLabel function3InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
 
 			final JLabel function3HashLabel = new JLabel("#");
 
@@ -208,7 +221,9 @@ public class FontHighlightingFrame extends JFrame {
 			function3DisabledField.setColumns(10);
 
 			// function4
-			final JLabel function4InfoLabel = new JLabel("function4:");
+			currentPref = "function4";
+
+			final JLabel function4InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
 
 			final JLabel function4HashLabel = new JLabel("#");
 
@@ -219,7 +234,9 @@ public class FontHighlightingFrame extends JFrame {
 			function4DisabledField.setColumns(10);
 
 			// invalid
-			final JLabel invalidInfoLabel = new JLabel("invalid:");
+			currentPref = "invalid";
+
+			final JLabel invalidInfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
 
 			final JLabel invalidHashLabel = new JLabel("#");
 
@@ -230,7 +247,9 @@ public class FontHighlightingFrame extends JFrame {
 			invalidDisabledField.setColumns(10);
 
 			// keyword1
-			final JLabel keyword1InfoLabel = new JLabel("keyword1:");
+			currentPref = "keyword1";
+
+			final JLabel keyword1InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
 
 			final JLabel keyword1HashLabel = new JLabel("#");
 
@@ -241,7 +260,9 @@ public class FontHighlightingFrame extends JFrame {
 			keyword1DisabledField.setColumns(10);
 
 			// keyword2
-			final JLabel keyword2InfoLabel = new JLabel("keyword2:");
+			currentPref = "keyword2";
+
+			final JLabel keyword2InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
 
 			final JLabel keyword2HashLabel = new JLabel("#");
 
@@ -252,7 +273,9 @@ public class FontHighlightingFrame extends JFrame {
 			keyword2DisabledField.setColumns(10);
 
 			// keyword3
-			final JLabel keyword3InfoLabel = new JLabel("keyword3:");
+			currentPref = "keyword3";
+
+			final JLabel keyword3InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
 
 			final JLabel keyword3HashLabel = new JLabel("#");
 
@@ -263,7 +286,9 @@ public class FontHighlightingFrame extends JFrame {
 			keyword3DisabledField.setColumns(10);
 
 			// keyword4
-			final JLabel keyword4InfoLabel = new JLabel("keyword4:");
+			currentPref = "keyword4";
+
+			final JLabel keyword4InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
 
 			final JLabel keyword4HashLabel = new JLabel("#");
 
@@ -274,7 +299,9 @@ public class FontHighlightingFrame extends JFrame {
 			keyword4DisabledField.setColumns(10);
 
 			// keyword5
-			final JLabel keyword5InfoLabel = new JLabel("keyword5:");
+			currentPref = "keyword5";
+
+			final JLabel keyword5InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
 
 			final JLabel keyword5HashLabel = new JLabel("#");
 
@@ -285,7 +312,9 @@ public class FontHighlightingFrame extends JFrame {
 			keyword5DisabledField.setColumns(10);
 
 			// keyword6
-			final JLabel keyword6InfoLabel = new JLabel("keyword6:");
+			currentPref = "keyword6";
+
+			final JLabel keyword6InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
 
 			final JLabel keyword6HashLabel = new JLabel("#");
 
@@ -296,7 +325,9 @@ public class FontHighlightingFrame extends JFrame {
 			keyword6DisabledField.setColumns(10);
 
 			// label
-			final JLabel labelInfoLabel = new JLabel("label:");
+			currentPref = "label";
+
+			final JLabel labelInfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
 
 			final JLabel labelHashLabel = new JLabel("#");
 
@@ -307,7 +338,9 @@ public class FontHighlightingFrame extends JFrame {
 			labelDisabledField.setColumns(10);
 
 			// literal1
-			final JLabel literal1InfoLabel = new JLabel("literal1:");
+			currentPref = "literal1";
+
+			final JLabel literal1InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
 
 			final JLabel literal1HashLabel = new JLabel("#");
 
@@ -318,7 +351,9 @@ public class FontHighlightingFrame extends JFrame {
 			literal1DisabledField.setColumns(10);
 
 			// literal2
-			final JLabel literal2InfoLabel = new JLabel("literal2:");
+			currentPref = "literal2";
+
+			final JLabel literal2InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
 
 			final JLabel literal2HashLabel = new JLabel("#");
 
@@ -329,7 +364,9 @@ public class FontHighlightingFrame extends JFrame {
 			literal2DisabledField.setColumns(10);
 
 			// operator
-			final JLabel operatorInfoLabel = new JLabel("operator:");
+			currentPref = "operator";
+
+			final JLabel operatorInfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
 
 			final JLabel operatorHashLabel = new JLabel("#");
 
@@ -340,7 +377,9 @@ public class FontHighlightingFrame extends JFrame {
 			operatorDisabledField.setColumns(10);
 
 			// bgcolor
-			final JLabel bgColorInfoLabel = new JLabel("bgcolor:");
+			currentPref = "bgcolor";
+
+			final JLabel bgColorInfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
 
 			final JLabel bgColorHashLabel = new JLabel("#");
 
@@ -384,14 +423,19 @@ public class FontHighlightingFrame extends JFrame {
 									GroupLayout.PREFERRED_SIZE)
 							.addContainerGap(475, Short.MAX_VALUE))
 					.addComponent(topSeparator, GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
-					.addGroup(layout.createSequentialGroup().addContainerGap().addComponent(comment1InfoLabel)
-							.addGap(18).addComponent(comment1HashLabel).addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(
+							layout.createSequentialGroup().addContainerGap()
+									.addComponent(comment1InfoLabel, GroupLayout.PREFERRED_SIZE, 56,
+											GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(comment1HashLabel, GroupLayout.PREFERRED_SIZE, 8,
+											GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
 							.addComponent(comment1FormattedField, GroupLayout.PREFERRED_SIZE, 51,
 									GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGap(6)
 							.addComponent(comment1DisabledField, GroupLayout.PREFERRED_SIZE, 20,
-									GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
+									GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(invalidInfoLabel, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addComponent(invalidHashLabel, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE)
@@ -400,8 +444,7 @@ public class FontHighlightingFrame extends JFrame {
 									GroupLayout.PREFERRED_SIZE)
 							.addGap(6)
 							.addComponent(invalidDisabledField, GroupLayout.PREFERRED_SIZE, 20,
-									GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
+									GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(keyword6InfoLabel, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addComponent(keyword6HashLabel, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE)
@@ -410,8 +453,7 @@ public class FontHighlightingFrame extends JFrame {
 									GroupLayout.PREFERRED_SIZE)
 							.addGap(6)
 							.addComponent(keyword6DisabledField, GroupLayout.PREFERRED_SIZE, 20,
-									GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(15, Short.MAX_VALUE))
+									GroupLayout.PREFERRED_SIZE).addContainerGap(15, Short.MAX_VALUE))
 					.addGroup(
 							layout.createSequentialGroup().addContainerGap()
 									.addComponent(comment2InfoLabel, GroupLayout.PREFERRED_SIZE, 56,
@@ -764,7 +806,7 @@ public class FontHighlightingFrame extends JFrame {
 	// field.setOpaque(true);
 	// field.setEnabled(false);
 	// field.setBorder(cb);
-	// field.setBackground(FontHighlightingUtils.extractColor(preferenceName));
+	// field.setBackground(FontHighlightingHelpers.extractColor(preferenceName));
 	// return field;
 	// }
 	//
@@ -780,7 +822,7 @@ public class FontHighlightingFrame extends JFrame {
 	// private JTextField setupHexField(String preferenceName, final JTextField
 	// comment1DisabledField) {
 	// final JTextField hexField = new JTextField(6);
-	// hexField.setText(FontHighlightingUtils.extractColorString(preferenceName));
+	// hexField.setText(FontHighlightingHelpers.extractColorString(preferenceName));
 	// hexField.getDocument().addDocumentListener(new DocumentListener() {
 	//
 	// @Override

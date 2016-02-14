@@ -25,6 +25,8 @@
 
 package fonthighlightingeditor.constants;
 
+import java.util.*;
+
 public class FontHighlightingConstants {
 	// Filepaths
 
@@ -48,6 +50,35 @@ public class FontHighlightingConstants {
 			+ "Please report any issues at ##source.url##\n";
 	public static final String TEXTAREA_INFO = "Use this tool to modify PDE's color highlighting settings.\n(Hover over the name of each setting to display info)";
 
-	public static final String COMMENT1_NAME = "comment1: ";
-	public static final String COMMENT1_TOOLTIP = "Used to mark a comment.";
+	@SuppressWarnings("serial")
+	public static final Map<String, String> TOOLTIPS = new HashMap<String, String>() {
+		{
+			/*
+			 * Description strings taken from
+			 * github.com/processing/processing/blob/master/app/src/processing/
+			 * app/syntax/Token.java
+			 * 
+			 * TODO: some of these appear to be unused, do research
+			 */
+
+			put("comment1", "This can be used to mark a comment.");
+			put("comment2", "This can be used to mark a comment.");
+			put("function1", "Functions.");
+			put("function2", "Methods.<br />(Functions inside a class)");
+			put("function3", "Loop/function-like blocks.<br />(for, while etc.)");
+			put("function4", "Built-in Processing functions.<br />(setup, draw, mouseDragged etc.)");
+			put("invalid", "Invalid or incomplete tokens.");
+			put("keyword1", "Keywords<br />(void, int, boolean etc.)");
+			put("keyword2", "Fields.<br />(Variables within a class)");
+			put("keyword3", "Loop/function-like blocks.<br />(for, while etc.)");
+			put("keyword4", "Processing variables.<br />(width, height, focused, etc.)");
+			put("keyword5", "Datatypes.<br />(int, boolean etc.)");
+			put("keyword6", "Keywords which can be followed by parenthesis.");
+			put("label", "Labels.");
+			put("literal1", "Strings in quotes.");
+			put("literal2", "Constants.<br />(QUARTER_PI, CORNERS etc.)");
+			put("operator", "Operators.");
+			put("bgcolor", "IDE background color.");
+		}
+	};
 }

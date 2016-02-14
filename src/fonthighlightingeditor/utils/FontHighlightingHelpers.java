@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import processing.app.Preferences;
 
-public class FontHighlightingUtils {
+public class FontHighlightingHelpers {
 	/**
 	 * Extracts a string representing a color from an editor.token.*.style
 	 * preference
