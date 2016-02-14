@@ -26,12 +26,15 @@
 package fonthighlightingeditor.tool;
 
 import java.awt.*;
+import java.awt.event.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.text.MaskFormatter;
 
 import processing.app.Base;
 
@@ -43,6 +46,25 @@ public class FontHighlightingFrame extends JFrame {
 	private Base base;
 	GroupLayout layout;
 
+	private JTextField comment1DisabledField;
+	private JTextField comment2DisabledField;
+	private JTextField function1DisabledField;
+	private JTextField function2DisabledField;
+	private JTextField function3DisabledField;
+	private JTextField function4DisabledField;
+	private JTextField invalidDisabledField;
+	private JTextField keyword1DisabledField;
+	private JTextField keyword2DisabledField;
+	private JTextField keyword3DisabledField;
+	private JTextField keyword4DisabledField;
+	private JTextField keyword5DisabledField;
+	private JTextField keyword6DisabledField;
+	private JTextField labelDisabledField;
+	private JTextField literal1DisabledField;
+	private JTextField literal2DisabledField;
+	private JTextField operatorDisabledField;
+	private JTextField bgColorDisabledField;
+
 	public FontHighlightingFrame(Base base) {
 		this.base = base;
 
@@ -52,7 +74,7 @@ public class FontHighlightingFrame extends JFrame {
 	/**
 	 * A method that sets up the frame's UI
 	 */
-	public void setupFrame() {
+	private void setupFrame() {
 		try {
 			// cb = new CompoundBorder(BorderFactory.createMatteBorder(1, 1, 0,
 			// 0, new Color(195, 195, 195)),
@@ -71,25 +93,263 @@ public class FontHighlightingFrame extends JFrame {
 
 			setIconImages(icons);
 
+			Font f = new Font("Dialog", Font.PLAIN, 12);
+			UIManager.put("Button.font", f);
+			UIManager.put("TextArea.font", f);
+
+			// Setup the text area displaying a tiny readme
 			final JTextArea infoArea = new JTextArea();
 			infoArea.setEditable(false);
 			infoArea.setBackground(null);
 			infoArea.setHighlighter(null);
-			infoArea.setFont(new Font("Dialog", Font.PLAIN, 12));
-			infoArea.setText(
-					"Use this tool to modify PDE's color highlighting settings.\n(Hover over the name of each setting to display info)");
+			infoArea.setText(FontHighlightingConstants.TEXTAREA_INFO);
 
+			// Setup separators
 			final JSeparator topSeparator = new JSeparator();
-
 			final JSeparator bottomSeparator = new JSeparator();
 
+			// Setup buttons
 			final JButton btnOK = new JButton("OK");
+			btnOK.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					applyPreferences();
+				}
+			});
 
 			final JButton btnCancel = new JButton("Cancel");
+			btnCancel.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+				}
+			});
 
 			final JButton btnImport = new JButton("Import");
 
 			final JButton btnExport = new JButton("Export");
+
+			/*
+			 * Formatter used in all JFormattedTextFields to restrict them to a
+			 * 6-character hex code
+			 */
+
+			MaskFormatter formatter = null;
+			try {
+				formatter = new MaskFormatter("HHHHHH");
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+
+			/*
+			 * Setup a series of control groups:
+			 * 
+			 * 1. name/info label
+			 * 
+			 * 2. hash label
+			 * 
+			 * 3. formatted text field
+			 * 
+			 * 4. a disabled text field linking to a colorChooser
+			 * 
+			 */
+
+			// comment1
+			final JLabel comment1InfoLabel = new JLabel("comment1: ");
+
+			final JLabel comment1HashLabel = new JLabel("#");
+
+			final JFormattedTextField comment1FormattedField = new JFormattedTextField(formatter);
+
+			comment1DisabledField = new JTextField();
+			comment1DisabledField.setEnabled(false);
+			comment1DisabledField.setColumns(10);
+
+			// comment2
+			final JLabel comment2InfoLabel = new JLabel("comment2: ");
+
+			final JLabel comment2HashLabel = new JLabel("#");
+
+			final JFormattedTextField comment2FormattedField = new JFormattedTextField(formatter);
+
+			comment2DisabledField = new JTextField();
+			comment2DisabledField.setEnabled(false);
+			comment2DisabledField.setColumns(10);
+
+			// function1
+			final JLabel function1InfoLabel = new JLabel("function1: ");
+
+			final JLabel function1HashLabel = new JLabel("#");
+
+			final JFormattedTextField function1FormattedField = new JFormattedTextField(formatter);
+
+			function1DisabledField = new JTextField();
+			function1DisabledField.setEnabled(false);
+			function1DisabledField.setColumns(10);
+
+			// function2
+			final JLabel function2InfoLabel = new JLabel("function2: ");
+
+			final JLabel function2HashLabel = new JLabel("#");
+
+			final JFormattedTextField function2FormattedField = new JFormattedTextField(formatter);
+
+			function2DisabledField = new JTextField();
+			function2DisabledField.setEnabled(false);
+			function2DisabledField.setColumns(10);
+
+			// function3
+			final JLabel function3InfoLabel = new JLabel("function3: ");
+
+			final JLabel function3HashLabel = new JLabel("#");
+
+			final JFormattedTextField function3FormattedField = new JFormattedTextField(formatter);
+
+			function3DisabledField = new JTextField();
+			function3DisabledField.setEnabled(false);
+			function3DisabledField.setColumns(10);
+
+			// function4
+			final JLabel function4InfoLabel = new JLabel("function4:");
+
+			final JLabel function4HashLabel = new JLabel("#");
+
+			final JFormattedTextField function4FormattedField = new JFormattedTextField(formatter);
+
+			function4DisabledField = new JTextField();
+			function4DisabledField.setEnabled(false);
+			function4DisabledField.setColumns(10);
+
+			// invalid
+			final JLabel invalidInfoLabel = new JLabel("invalid:");
+
+			final JLabel invalidHashLabel = new JLabel("#");
+
+			final JFormattedTextField invalidFormattedField = new JFormattedTextField(formatter);
+
+			invalidDisabledField = new JTextField();
+			invalidDisabledField.setEnabled(false);
+			invalidDisabledField.setColumns(10);
+
+			// keyword1
+			final JLabel keyword1InfoLabel = new JLabel("keyword1:");
+
+			final JLabel keyword1HashLabel = new JLabel("#");
+
+			final JFormattedTextField keyword1FormattedField = new JFormattedTextField(formatter);
+
+			keyword1DisabledField = new JTextField();
+			keyword1DisabledField.setEnabled(false);
+			keyword1DisabledField.setColumns(10);
+
+			// keyword2
+			final JLabel keyword2InfoLabel = new JLabel("keyword2:");
+
+			final JLabel keyword2HashLabel = new JLabel("#");
+
+			final JFormattedTextField keyword2FormattedField = new JFormattedTextField(formatter);
+
+			keyword2DisabledField = new JTextField();
+			keyword2DisabledField.setEnabled(false);
+			keyword2DisabledField.setColumns(10);
+
+			// keyword3
+			final JLabel keyword3InfoLabel = new JLabel("keyword3:");
+
+			final JLabel keyword3HashLabel = new JLabel("#");
+
+			final JFormattedTextField keyword3FormattedField = new JFormattedTextField(formatter);
+
+			keyword3DisabledField = new JTextField();
+			keyword3DisabledField.setEnabled(false);
+			keyword3DisabledField.setColumns(10);
+
+			// keyword4
+			final JLabel keyword4InfoLabel = new JLabel("keyword4:");
+
+			final JLabel keyword4HashLabel = new JLabel("#");
+
+			final JFormattedTextField keyword4FormattedField = new JFormattedTextField(formatter);
+
+			keyword4DisabledField = new JTextField();
+			keyword4DisabledField.setEnabled(false);
+			keyword4DisabledField.setColumns(10);
+
+			// keyword5
+			final JLabel keyword5InfoLabel = new JLabel("keyword5:");
+
+			final JLabel keyword5HashLabel = new JLabel("#");
+
+			final JFormattedTextField keyword5FormattedField = new JFormattedTextField(formatter);
+
+			keyword5DisabledField = new JTextField();
+			keyword5DisabledField.setEnabled(false);
+			keyword5DisabledField.setColumns(10);
+
+			// keyword6
+			final JLabel keyword6InfoLabel = new JLabel("keyword6:");
+
+			final JLabel keyword6HashLabel = new JLabel("#");
+
+			final JFormattedTextField keyword6FormattedField = new JFormattedTextField(formatter);
+
+			keyword6DisabledField = new JTextField();
+			keyword6DisabledField.setEnabled(false);
+			keyword6DisabledField.setColumns(10);
+
+			// label
+			final JLabel labelInfoLabel = new JLabel("label:");
+
+			final JLabel labelHashLabel = new JLabel("#");
+
+			final JFormattedTextField labelFormattedField = new JFormattedTextField(formatter);
+
+			labelDisabledField = new JTextField();
+			labelDisabledField.setEnabled(false);
+			labelDisabledField.setColumns(10);
+
+			// literal1
+			final JLabel literal1InfoLabel = new JLabel("literal1:");
+
+			final JLabel literal1HashLabel = new JLabel("#");
+
+			final JFormattedTextField literal1FormattedField = new JFormattedTextField(formatter);
+
+			literal1DisabledField = new JTextField();
+			literal1DisabledField.setEnabled(false);
+			literal1DisabledField.setColumns(10);
+
+			// literal2
+			final JLabel literal2InfoLabel = new JLabel("literal2:");
+
+			final JLabel literal2HashLabel = new JLabel("#");
+
+			final JFormattedTextField literal2FormattedField = new JFormattedTextField(formatter);
+
+			literal2DisabledField = new JTextField();
+			literal2DisabledField.setEnabled(false);
+			literal2DisabledField.setColumns(10);
+
+			// operator
+			final JLabel operatorInfoLabel = new JLabel("operator:");
+
+			final JLabel operatorHashLabel = new JLabel("#");
+
+			final JFormattedTextField operatorFormattedField = new JFormattedTextField(formatter);
+
+			operatorDisabledField = new JTextField();
+			operatorDisabledField.setEnabled(false);
+			operatorDisabledField.setColumns(10);
+
+			// bgcolor
+			final JLabel bgColorInfoLabel = new JLabel("bgcolor:");
+
+			final JLabel bgColorHashLabel = new JLabel("#");
+
+			final JFormattedTextField bgColorFormattedField = new JFormattedTextField(formatter);
+
+			bgColorDisabledField = new JTextField();
+			bgColorDisabledField.setEnabled(false);
+			bgColorDisabledField.setColumns(10);
+
 			// JLabel comment1HashLabel = new JLabel("#");
 			// JLabel comment1Label = new
 			// JLabel(FontHighlightingConstants.COMMENT1_NAME);
@@ -114,28 +374,210 @@ public class FontHighlightingFrame extends JFrame {
 			// });
 			// this.setupMouseListener(comment1Field, comment1Chooser);
 
-			// Setup the layout
+			/*
+			 * Setup the layout. Lots and lots of autogenerated code here.
+			 */
 			layout = new GroupLayout(getContentPane());
 			layout.setHorizontalGroup(layout.createParallelGroup(Alignment.TRAILING)
 					.addGroup(layout.createSequentialGroup().addContainerGap()
 							.addComponent(infoArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(175, Short.MAX_VALUE))
-					.addComponent(topSeparator, GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+							.addContainerGap(475, Short.MAX_VALUE))
+					.addComponent(topSeparator, GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+					.addGroup(layout.createSequentialGroup().addContainerGap().addComponent(comment1InfoLabel)
+							.addGap(18).addComponent(comment1HashLabel).addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comment1FormattedField, GroupLayout.PREFERRED_SIZE, 51,
+									GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comment1DisabledField, GroupLayout.PREFERRED_SIZE, 20,
+									GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(invalidInfoLabel, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(invalidHashLabel, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(invalidFormattedField, GroupLayout.PREFERRED_SIZE, 51,
+									GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(invalidDisabledField, GroupLayout.PREFERRED_SIZE, 20,
+									GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(keyword6InfoLabel, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(keyword6HashLabel, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(keyword6FormattedField, GroupLayout.PREFERRED_SIZE, 51,
+									GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(keyword6DisabledField, GroupLayout.PREFERRED_SIZE, 20,
+									GroupLayout.PREFERRED_SIZE)
+							.addContainerGap(15, Short.MAX_VALUE))
 					.addGroup(
-							layout.createSequentialGroup()
-									.addComponent(bottomSeparator, GroupLayout.PREFERRED_SIZE, 494,
+							layout.createSequentialGroup().addContainerGap()
+									.addComponent(comment2InfoLabel, GroupLayout.PREFERRED_SIZE, 56,
 											GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(comment2HashLabel, GroupLayout.PREFERRED_SIZE, 8,
+											GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(comment2FormattedField, GroupLayout.PREFERRED_SIZE, 51,
+									GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(comment2DisabledField, GroupLayout.PREFERRED_SIZE, 20,
+									GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(keyword1InfoLabel, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(keyword1HashLabel, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(keyword1FormattedField, GroupLayout.PREFERRED_SIZE, 51,
+									GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(keyword1DisabledField, GroupLayout.PREFERRED_SIZE, 20,
+									GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(labelInfoLabel, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(labelHashLabel, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(labelFormattedField, GroupLayout.PREFERRED_SIZE, 51,
+									GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(labelDisabledField, GroupLayout.PREFERRED_SIZE, 20,
+									GroupLayout.PREFERRED_SIZE).addContainerGap(15, Short.MAX_VALUE))
+					.addGroup(
+							layout.createSequentialGroup().addContainerGap()
+									.addComponent(function1InfoLabel, GroupLayout.PREFERRED_SIZE, 56,
+											GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(function1HashLabel, GroupLayout.PREFERRED_SIZE, 8,
+											GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(function1FormattedField, GroupLayout.PREFERRED_SIZE, 51,
+									GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(function1DisabledField, GroupLayout.PREFERRED_SIZE, 20,
+									GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(keyword2InfoLabel, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(keyword2HashLabel, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(keyword2FormattedField, GroupLayout.PREFERRED_SIZE, 51,
+									GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(keyword2DisabledField, GroupLayout.PREFERRED_SIZE, 20,
+									GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(literal1InfoLabel, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(literal1HashLabel, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(literal1FormattedField, GroupLayout.PREFERRED_SIZE, 51,
+									GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(literal1DisabledField, GroupLayout.PREFERRED_SIZE, 20,
+									GroupLayout.PREFERRED_SIZE).addContainerGap(15, Short.MAX_VALUE))
+					.addGroup(
+							layout.createSequentialGroup().addContainerGap()
+									.addComponent(function2InfoLabel, GroupLayout.PREFERRED_SIZE, 56,
+											GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(function2HashLabel, GroupLayout.PREFERRED_SIZE, 8,
+											GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(function2FormattedField, GroupLayout.PREFERRED_SIZE, 51,
+									GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(function2DisabledField, GroupLayout.PREFERRED_SIZE, 20,
+									GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(keyword3InfoLabel, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(keyword3HashLabel, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(keyword3FormattedField, GroupLayout.PREFERRED_SIZE, 51,
+									GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(keyword3DisabledField, GroupLayout.PREFERRED_SIZE, 20,
+									GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(literal2InfoLabel, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(literal2HashLabel, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(literal2FormattedField, GroupLayout.PREFERRED_SIZE, 51,
+									GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(literal2DisabledField, GroupLayout.PREFERRED_SIZE, 20,
+									GroupLayout.PREFERRED_SIZE).addContainerGap(15, Short.MAX_VALUE))
+					.addGroup(
+							layout.createSequentialGroup().addContainerGap()
+									.addComponent(function3InfoLabel, GroupLayout.PREFERRED_SIZE, 56,
+											GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(function3HashLabel, GroupLayout.PREFERRED_SIZE, 8,
+											GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(function3FormattedField, GroupLayout.PREFERRED_SIZE, 51,
+									GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(function3DisabledField, GroupLayout.PREFERRED_SIZE, 20,
+									GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(keyword4InfoLabel, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(keyword4HashLabel, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(keyword4FormattedField, GroupLayout.PREFERRED_SIZE, 51,
+									GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(keyword4DisabledField, GroupLayout.PREFERRED_SIZE, 20,
+									GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(operatorInfoLabel, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(operatorHashLabel, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(operatorFormattedField, GroupLayout.PREFERRED_SIZE, 51,
+									GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(operatorDisabledField, GroupLayout.PREFERRED_SIZE, 20,
+									GroupLayout.PREFERRED_SIZE).addContainerGap(15, Short.MAX_VALUE))
+					.addGroup(
+							layout.createSequentialGroup().addContainerGap()
+									.addComponent(function4InfoLabel, GroupLayout.PREFERRED_SIZE, 56,
+											GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(function4HashLabel, GroupLayout.PREFERRED_SIZE, 8,
+											GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(function4FormattedField, GroupLayout.PREFERRED_SIZE, 51,
+									GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(function4DisabledField, GroupLayout.PREFERRED_SIZE, 20,
+									GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(keyword5InfoLabel, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(keyword5HashLabel, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(keyword5FormattedField, GroupLayout.PREFERRED_SIZE, 51,
+									GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(keyword5DisabledField, GroupLayout.PREFERRED_SIZE, 20,
+									GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(bgColorInfoLabel, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(bgColorHashLabel, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(bgColorFormattedField, GroupLayout.PREFERRED_SIZE, 51,
+									GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(bgColorDisabledField, GroupLayout.PREFERRED_SIZE, 20,
+									GroupLayout.PREFERRED_SIZE).addContainerGap(15, Short.MAX_VALUE))
+					.addGroup(Alignment.LEADING,
+							layout.createSequentialGroup().addContainerGap()
+									.addComponent(btnImport, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnExport, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+									.addComponent(btnOK, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
 									.addContainerGap())
-					.addGroup(layout.createSequentialGroup().addContainerGap()
-							.addComponent(btnImport, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnExport, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
-							.addComponent(btnOK, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
-							.addGap(22)));
+					.addComponent(bottomSeparator, GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE));
 			layout.setVerticalGroup(
 					layout.createParallelGroup(Alignment.LEADING)
 							.addGroup(layout.createSequentialGroup().addContainerGap()
@@ -144,16 +586,151 @@ public class FontHighlightingFrame extends JFrame {
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(topSeparator, GroupLayout.PREFERRED_SIZE, 2,
 											GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 269, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+							.addGroup(layout.createSequentialGroup()
+									.addGroup(layout.createParallelGroup(Alignment.LEADING)
+											.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+													.addComponent(comment1InfoLabel).addComponent(comment1HashLabel)
+													.addComponent(comment1FormattedField, GroupLayout.PREFERRED_SIZE,
+															GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(comment1DisabledField, GroupLayout.PREFERRED_SIZE,
+											GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addGroup(layout.createSequentialGroup().addGap(3).addComponent(invalidInfoLabel))
+									.addGroup(layout.createSequentialGroup().addGap(3).addComponent(invalidHashLabel))
+									.addComponent(invalidFormattedField, GroupLayout.PREFERRED_SIZE,
+											GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(invalidDisabledField, GroupLayout.PREFERRED_SIZE,
+											GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED).addGroup(
+									layout.createParallelGroup(Alignment.LEADING)
+											.addGroup(layout.createSequentialGroup().addGap(3)
+													.addComponent(comment2InfoLabel))
+									.addGroup(layout.createSequentialGroup().addGap(3).addComponent(comment2HashLabel))
+									.addComponent(comment2FormattedField, GroupLayout.PREFERRED_SIZE,
+											GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(comment2DisabledField, GroupLayout.PREFERRED_SIZE,
+											GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGroup(layout.createSequentialGroup().addGap(3).addComponent(keyword1InfoLabel))
+									.addGroup(layout.createSequentialGroup().addGap(3).addComponent(keyword1HashLabel))
+									.addComponent(keyword1FormattedField, GroupLayout.PREFERRED_SIZE,
+											GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(keyword1DisabledField, GroupLayout.PREFERRED_SIZE,
+											GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addGroup(layout.createSequentialGroup()
+									.addGroup(layout.createParallelGroup(Alignment.LEADING)
+											.addGroup(layout.createSequentialGroup().addGap(3)
+													.addComponent(keyword6InfoLabel))
+									.addGroup(layout.createSequentialGroup().addGap(3).addComponent(keyword6HashLabel))
+									.addComponent(keyword6FormattedField, GroupLayout.PREFERRED_SIZE,
+											GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(keyword6DisabledField, GroupLayout.PREFERRED_SIZE,
+											GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(layout.createParallelGroup(Alignment.LEADING)
+											.addGroup(layout.createSequentialGroup().addGap(3)
+													.addComponent(labelInfoLabel))
+											.addGroup(layout.createSequentialGroup().addGap(3)
+													.addComponent(labelHashLabel))
+											.addComponent(labelFormattedField, GroupLayout.PREFERRED_SIZE,
+													GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(labelDisabledField, GroupLayout.PREFERRED_SIZE,
+													GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+					.addPreferredGap(
+							ComponentPlacement.RELATED).addGroup(
+									layout.createParallelGroup(Alignment.LEADING)
+											.addGroup(layout.createSequentialGroup().addGap(3)
+													.addComponent(function1InfoLabel))
+							.addGroup(layout.createSequentialGroup().addGap(3).addComponent(function1HashLabel))
+							.addComponent(function1FormattedField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addComponent(function1DisabledField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addGroup(layout.createSequentialGroup().addGap(3).addComponent(keyword2InfoLabel))
+							.addGroup(layout.createSequentialGroup().addGap(3).addComponent(keyword2HashLabel))
+							.addComponent(keyword2FormattedField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addComponent(keyword2DisabledField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addGroup(layout.createSequentialGroup().addGap(3).addComponent(literal1InfoLabel))
+							.addGroup(layout.createSequentialGroup().addGap(3).addComponent(literal1HashLabel))
+							.addComponent(literal1FormattedField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addComponent(literal1DisabledField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED).addGroup(
+											layout.createParallelGroup(Alignment.LEADING)
+													.addGroup(layout.createSequentialGroup().addGap(3)
+															.addComponent(function2InfoLabel))
+									.addGroup(layout.createSequentialGroup().addGap(3).addComponent(function2HashLabel))
+									.addComponent(function2FormattedField, GroupLayout.PREFERRED_SIZE,
+											GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(function2DisabledField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addGroup(layout.createSequentialGroup().addGap(3).addComponent(keyword3InfoLabel))
+							.addGroup(layout.createSequentialGroup().addGap(3).addComponent(keyword3HashLabel))
+							.addComponent(keyword3FormattedField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addComponent(keyword3DisabledField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addGroup(layout.createSequentialGroup().addGap(3).addComponent(literal2InfoLabel))
+							.addGroup(layout.createSequentialGroup().addGap(3).addComponent(literal2HashLabel))
+							.addComponent(literal2FormattedField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE).addComponent(literal2DisabledField,
+											GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+											GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(
+							ComponentPlacement.RELATED).addGroup(
+									layout.createParallelGroup(Alignment.LEADING)
+											.addGroup(layout.createSequentialGroup().addGap(3).addComponent(
+													function3InfoLabel))
+							.addGroup(layout.createSequentialGroup().addGap(3).addComponent(function3HashLabel))
+							.addComponent(function3FormattedField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addComponent(function3DisabledField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addGroup(layout.createSequentialGroup().addGap(3).addComponent(keyword4InfoLabel))
+							.addGroup(layout.createSequentialGroup().addGap(3).addComponent(keyword4HashLabel))
+							.addComponent(keyword4FormattedField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addComponent(keyword4DisabledField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addGroup(layout.createSequentialGroup().addGap(3).addComponent(operatorInfoLabel))
+							.addGroup(layout.createSequentialGroup().addGap(3).addComponent(operatorHashLabel))
+							.addComponent(operatorFormattedField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addComponent(operatorDisabledField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED).addGroup(
+											layout.createParallelGroup(Alignment.LEADING)
+													.addGroup(layout.createSequentialGroup().addGap(3)
+															.addComponent(bgColorInfoLabel))
+									.addGroup(layout.createSequentialGroup().addGap(3).addComponent(bgColorHashLabel))
+									.addComponent(bgColorFormattedField, GroupLayout.PREFERRED_SIZE,
+											GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(bgColorDisabledField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addGroup(layout.createSequentialGroup().addGap(3).addComponent(keyword5InfoLabel))
+							.addGroup(layout.createSequentialGroup().addGap(3).addComponent(keyword5HashLabel))
+							.addComponent(keyword5FormattedField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addComponent(keyword5DisabledField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addGroup(layout.createSequentialGroup().addGap(3).addComponent(function4InfoLabel))
+							.addGroup(layout.createSequentialGroup().addGap(3).addComponent(function4HashLabel))
+							.addComponent(function4FormattedField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE).addComponent(function4DisabledField,
+											GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+											GroupLayout.PREFERRED_SIZE))
+					.addGap(13)
 					.addComponent(bottomSeparator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 							GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(btnCancel).addComponent(btnOK)
-							.addComponent(btnImport).addComponent(btnExport)).addContainerGap()));
+					.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(btnImport)
+							.addComponent(btnExport).addComponent(btnCancel).addComponent(btnOK)).addContainerGap()));
+
 			getContentPane().setLayout(layout);
 
-			// Wrapping up - set a preferred size, center and display
+			// Wrapping up - set a preferred size, center the frame and display
 
-			setPreferredSize(new Dimension(500, 400));
+			setPreferredSize(new Dimension(540, 300));
 			setResizable(false);
 
 			pack();
@@ -167,6 +744,13 @@ public class FontHighlightingFrame extends JFrame {
 		}
 	}
 
+	private void applyPreferences() {
+		// TODO: implement this
+		dispose();
+	}
+
+	// Old factory code here
+	//
 	// /**
 	// * Sets up a disabled "text field" used to call colorChooser and show the
 	// * current color selection
@@ -189,12 +773,12 @@ public class FontHighlightingFrame extends JFrame {
 	// *
 	// * @param preferenceName
 	// * The name of the preference the field refers to
-	// * @param textField
+	// * @param comment1DisabledField
 	// * A disabled text field (see above)
 	// * @return A fully setup JTextField variable
 	// */
 	// private JTextField setupHexField(String preferenceName, final JTextField
-	// textField) {
+	// comment1DisabledField) {
 	// final JTextField hexField = new JTextField(6);
 	// hexField.setText(FontHighlightingUtils.extractColorString(preferenceName));
 	// hexField.getDocument().addDocumentListener(new DocumentListener() {
@@ -210,7 +794,8 @@ public class FontHighlightingFrame extends JFrame {
 	// });
 	// if (colorValue.length() == 6 &&
 	// colorValue.matches("[0123456789ABCDEF]*")) {
-	// textField.setBackground(new Color(PApplet.unhex(colorValue)));
+	// comment1DisabledField.setBackground(new
+	// Color(PApplet.unhex(colorValue)));
 	// if (!colorValue.equals(hexField.getText()))
 	// SwingUtilities.invokeLater(new Runnable() {
 	// public void run() {
@@ -231,7 +816,8 @@ public class FontHighlightingFrame extends JFrame {
 	// });
 	// if (colorValue.length() == 6 &&
 	// colorValue.matches("[0123456789ABCDEF]*")) {
-	// textField.setBackground(new Color(PApplet.unhex(colorValue)));
+	// comment1DisabledField.setBackground(new
+	// Color(PApplet.unhex(colorValue)));
 	// if (!colorValue.equals(hexField.getText()))
 	// SwingUtilities.invokeLater(new Runnable() {
 	// public void run() {
@@ -253,14 +839,15 @@ public class FontHighlightingFrame extends JFrame {
 	// activate
 	// * a ColorChooser
 	// *
-	// * @param textField
+	// * @param comment1DisabledField
 	// * A disabled text field (see above)
 	// * @param chooser
 	// * A ColorChooser instance
 	// */
-	// private void setupMouseListener(final JTextField textField, final
+	// private void setupMouseListener(final JTextField comment1DisabledField,
+	// final
 	// ColorChooser chooser) {
-	// textField.addMouseListener(new MouseAdapter() {
+	// comment1DisabledField.addMouseListener(new MouseAdapter() {
 	// @Override
 	// public void mouseExited(MouseEvent e) {
 	// setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
