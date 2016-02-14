@@ -14,7 +14,13 @@ public class FontHighlightingHelpers {
 	 * @return A hex color string (w/o leading #) extracted from the preference
 	 */
 	public static String extractColorString(String preferenceName) {
-		String s = Preferences.get(preferenceName);
+		String s;
+		if (preferenceName == "bgcolor") {
+			s = Preferences.get("run.window." + preferenceName);
+		} else {
+			s = Preferences.get("editor.token." + preferenceName + ".style");
+
+		}
 		int index = s.lastIndexOf(",");
 		if (index == -1) {
 			return s.substring(1).toUpperCase();
