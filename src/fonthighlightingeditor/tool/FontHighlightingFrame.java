@@ -41,6 +41,7 @@ import processing.app.ui.ColorChooser;
 import processing.core.PApplet;
 
 import fonthighlightingeditor.constants.FontHighlightingConstants;
+import fonthighlightingeditor.utils.FontHighlightingUtils;
 
 public class FontHighlightingFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -152,7 +153,7 @@ public class FontHighlightingFrame extends JFrame {
 		field.setOpaque(true);
 		field.setEnabled(false);
 		field.setBorder(cb);
-		field.setBackground(extractColor(preferenceName));
+		field.setBackground(FontHighlightingUtils.extractColor(preferenceName));
 		return field;
 	}
 
@@ -167,7 +168,7 @@ public class FontHighlightingFrame extends JFrame {
 	 */
 	private JTextField setupHexField(String preferenceName, final JTextField textField) {
 		final JTextField hexField = new JTextField(6);
-		hexField.setText(extractColorString(preferenceName));
+		hexField.setText(FontHighlightingUtils.extractColorString(preferenceName));
 		hexField.getDocument().addDocumentListener(new DocumentListener() {
 
 			@Override
@@ -243,35 +244,6 @@ public class FontHighlightingFrame extends JFrame {
 				chooser.show();
 			}
 		});
-	}
-
-	/**
-	 * Extracts a string representing a color from an editor.token.*.style
-	 * preference
-	 * 
-	 * @param preferenceName
-	 *            The name of the preference
-	 * @return A hex color string (w/o leading #) extracted from the preference
-	 */
-	private String extractColorString(String preferenceName) {
-		String s = Preferences.get(preferenceName);
-		int index = s.lastIndexOf(",");
-		if (index == -1) {
-			return s.substring(1).toUpperCase();
-		} else {
-			return s.substring(1, index).toUpperCase();
-		}
-	}
-
-	/**
-	 * Extracts a color from an editor.token.*.style preference
-	 * 
-	 * @param preferenceName
-	 *            The name of the preference
-	 * @return A Color object extracted from the preference
-	 */
-	private Color extractColor(String preferenceName) {
-		return Color.decode("#" + extractColorString(preferenceName));
 	}
 
 	/**
