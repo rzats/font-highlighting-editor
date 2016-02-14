@@ -1,9 +1,13 @@
 package fonthighlightingeditor.tool;
 
+import java.awt.Color;
 import java.text.ParseException;
 
 import javax.swing.*;
+import javax.swing.event.*;
 import javax.swing.text.MaskFormatter;
+
+import processing.core.PApplet;
 
 import fonthighlightingeditor.constants.FontHighlightingConstants;
 import fonthighlightingeditor.utils.FontHighlightingHelpers;
@@ -67,38 +71,39 @@ public class FontHighlightingFactory {
 			e.printStackTrace();
 		}
 
-		final JFormattedTextField formattedFeld = new JFormattedTextField(formatter);
-		formattedFeld.setText(FontHighlightingHelpers.extractColorString(preferenceName));
-		/*
-		 * formattedFeld.getDocument().addDocumentListener(new
-		 * DocumentListener() {
-		 * 
-		 * @Override public void removeUpdate(DocumentEvent e) { final String
-		 * colorValue = formattedFeld.getText().toUpperCase(); if
-		 * (colorValue.length() == 7 && (colorValue.startsWith("#")))
-		 * SwingUtilities.invokeLater(new Runnable() { public void run() {
-		 * formattedFeld.setText(colorValue.substring(1)); } }); if
-		 * (colorValue.length() == 6 &&
-		 * colorValue.matches("[0123456789ABCDEF]*")) {
-		 * textField.setBackground(new Color(PApplet.unhex(colorValue))); if
-		 * (!colorValue.equals(formattedFeld.getText()))
-		 * SwingUtilities.invokeLater(new Runnable() { public void run() {
-		 * formattedFeld.setText(colorValue); } }); } }
-		 * 
-		 * @Override public void insertUpdate(DocumentEvent e) { final String
-		 * colorValue = formattedFeld.getText().toUpperCase(); if
-		 * (colorValue.length() == 7 && (colorValue.startsWith("#")))
-		 * SwingUtilities.invokeLater(new Runnable() { public void run() {
-		 * formattedFeld.setText(colorValue.substring(1)); } }); if
-		 * (colorValue.length() == 6 &&
-		 * colorValue.matches("[0123456789ABCDEF]*")) {
-		 * textField.setBackground(new Color(PApplet.unhex(colorValue))); if
-		 * (!colorValue.equals(formattedFeld.getText()))
-		 * SwingUtilities.invokeLater(new Runnable() { public void run() {
-		 * formattedFeld.setText(colorValue); } }); } }
-		 * 
-		 * @Override public void changedUpdate(DocumentEvent e) { } });
-		 */
-		return formattedFeld;
+		// Initialize the field
+		final JFormattedTextField formattedField = new JFormattedTextField(formatter);
+		formattedField.setText(FontHighlightingHelpers.extractColorString(preferenceName));
+
+		// Respond to disabled field changes
+		formattedField.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// Unnecessary for JFormattedTextField
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				final String colorValue = formattedField.getText().toUpperCase();
+				if (colorValue.length() == 6 && colorValue.matches("[0123456789ABCDEF]*")) {
+					textField.setBackground(new Color(PApplet.unhex(colorValue)));
+					if (!colorValue.equals(formattedField.getText())) {
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								formattedField.setText(colorValue);
+							}
+						});
+					}
+				}
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// Unnecessary for text fields
+			}
+		});
+
+		return formattedField;
 	}
 }

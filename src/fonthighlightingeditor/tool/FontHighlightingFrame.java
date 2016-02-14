@@ -27,18 +27,19 @@ package fonthighlightingeditor.tool;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.text.ParseException;
+import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.text.MaskFormatter;
 
 import processing.app.Base;
+import processing.app.ui.Editor;
 
 import fonthighlightingeditor.constants.FontHighlightingConstants;
+import fonthighlightingeditor.utils.FontHighlightingHelpers;
 
 public class FontHighlightingFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -83,8 +84,8 @@ public class FontHighlightingFrame extends JFrame {
 
 			List<Image> icons = new ArrayList<Image>();
 
-			icons.add(loadImage(FontHighlightingConstants.PDE_ICON_16));
-			icons.add(loadImage(FontHighlightingConstants.PDE_ICON_32));
+			icons.add(FontHighlightingHelpers.loadImage(FontHighlightingConstants.PDE_ICON_16));
+			icons.add(FontHighlightingHelpers.loadImage(FontHighlightingConstants.PDE_ICON_32));
 
 			setIconImages(icons);
 
@@ -119,19 +120,9 @@ public class FontHighlightingFrame extends JFrame {
 			});
 
 			final JButton btnImport = new JButton("Import");
-
+			btnImport.setEnabled(false);
 			final JButton btnExport = new JButton("Export");
-			/*
-			 * Formatter used in all JFormattedTextFields to restrict them to a
-			 * 6-character hex code
-			 */
-
-			MaskFormatter formatter = null;
-			try {
-				formatter = new MaskFormatter("HHHHHH");
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+			btnExport.setEnabled(false);
 			/*
 			 * Setup a series of control groups:
 			 * 
@@ -145,260 +136,236 @@ public class FontHighlightingFrame extends JFrame {
 			 * 
 			 */
 
-			String currentPref;
+			String currentPreference;
 
 			// comment1
 
-			currentPref = "comment1";
+			currentPreference = "comment1";
 
-			final JLabel comment1InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
+			final JLabel comment1InfoLabel = FontHighlightingFactory.createInfoLabel(currentPreference);
 
 			final JLabel comment1HashLabel = FontHighlightingFactory.createHashLabel();
 
-			comment1DisabledField = FontHighlightingFactory.createDisabledTextField(currentPref);
+			comment1DisabledField = FontHighlightingFactory.createDisabledTextField(currentPreference);
 
 			final JFormattedTextField comment1FormattedField = FontHighlightingFactory
-					.createFormattedTextField(currentPref, comment1DisabledField);
+					.createFormattedTextField(currentPreference, comment1DisabledField);
 
 			// comment2
 
-			currentPref = "comment2";
+			currentPreference = "comment2";
 
-			final JLabel comment2InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
+			final JLabel comment2InfoLabel = FontHighlightingFactory.createInfoLabel(currentPreference);
 
 			final JLabel comment2HashLabel = FontHighlightingFactory.createHashLabel();
 
-			comment2DisabledField = FontHighlightingFactory.createDisabledTextField(currentPref);
+			comment2DisabledField = FontHighlightingFactory.createDisabledTextField(currentPreference);
 
 			final JFormattedTextField comment2FormattedField = FontHighlightingFactory
-					.createFormattedTextField(currentPref, comment2DisabledField);
+					.createFormattedTextField(currentPreference, comment2DisabledField);
 
 			// function1
 
-			currentPref = "function1";
+			currentPreference = "function1";
 
-			final JLabel function1InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
+			final JLabel function1InfoLabel = FontHighlightingFactory.createInfoLabel(currentPreference);
 
 			final JLabel function1HashLabel = FontHighlightingFactory.createHashLabel();
 
-			function1DisabledField = FontHighlightingFactory.createDisabledTextField(currentPref);
+			function1DisabledField = FontHighlightingFactory.createDisabledTextField(currentPreference);
 
 			final JFormattedTextField function1FormattedField = FontHighlightingFactory
-					.createFormattedTextField(currentPref, function1DisabledField);
+					.createFormattedTextField(currentPreference, function1DisabledField);
 
 			// function2
 
-			currentPref = "function2";
+			currentPreference = "function2";
 
-			final JLabel function2InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
+			final JLabel function2InfoLabel = FontHighlightingFactory.createInfoLabel(currentPreference);
 
 			final JLabel function2HashLabel = FontHighlightingFactory.createHashLabel();
 
-			function2DisabledField = FontHighlightingFactory.createDisabledTextField(currentPref);
+			function2DisabledField = FontHighlightingFactory.createDisabledTextField(currentPreference);
 
 			final JFormattedTextField function2FormattedField = FontHighlightingFactory
-					.createFormattedTextField(currentPref, function2DisabledField);
+					.createFormattedTextField(currentPreference, function2DisabledField);
 
 			// function3
 
-			currentPref = "function3";
+			currentPreference = "function3";
 
-			final JLabel function3InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
+			final JLabel function3InfoLabel = FontHighlightingFactory.createInfoLabel(currentPreference);
 
 			final JLabel function3HashLabel = FontHighlightingFactory.createHashLabel();
 
-			function3DisabledField = FontHighlightingFactory.createDisabledTextField(currentPref);
+			function3DisabledField = FontHighlightingFactory.createDisabledTextField(currentPreference);
 
 			final JFormattedTextField function3FormattedField = FontHighlightingFactory
-					.createFormattedTextField(currentPref, function3DisabledField);
+					.createFormattedTextField(currentPreference, function3DisabledField);
 
 			// function4
 
-			currentPref = "function4";
+			currentPreference = "function4";
 
-			final JLabel function4InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
+			final JLabel function4InfoLabel = FontHighlightingFactory.createInfoLabel(currentPreference);
 
 			final JLabel function4HashLabel = FontHighlightingFactory.createHashLabel();
 
-			function4DisabledField = FontHighlightingFactory.createDisabledTextField(currentPref);
+			function4DisabledField = FontHighlightingFactory.createDisabledTextField(currentPreference);
 
 			final JFormattedTextField function4FormattedField = FontHighlightingFactory
-					.createFormattedTextField(currentPref, function4DisabledField);
+					.createFormattedTextField(currentPreference, function4DisabledField);
 
 			// invalid
 
-			currentPref = "invalid";
+			currentPreference = "invalid";
 
-			final JLabel invalidInfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
+			final JLabel invalidInfoLabel = FontHighlightingFactory.createInfoLabel(currentPreference);
 
 			final JLabel invalidHashLabel = FontHighlightingFactory.createHashLabel();
 
-			invalidDisabledField = FontHighlightingFactory.createDisabledTextField(currentPref);
+			invalidDisabledField = FontHighlightingFactory.createDisabledTextField(currentPreference);
 
 			final JFormattedTextField invalidFormattedField = FontHighlightingFactory
-					.createFormattedTextField(currentPref, invalidDisabledField);
+					.createFormattedTextField(currentPreference, invalidDisabledField);
 
 			// keyword1
 
-			currentPref = "keyword1";
+			currentPreference = "keyword1";
 
-			final JLabel keyword1InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
+			final JLabel keyword1InfoLabel = FontHighlightingFactory.createInfoLabel(currentPreference);
 
 			final JLabel keyword1HashLabel = FontHighlightingFactory.createHashLabel();
 
-			keyword1DisabledField = FontHighlightingFactory.createDisabledTextField(currentPref);
+			keyword1DisabledField = FontHighlightingFactory.createDisabledTextField(currentPreference);
 
 			final JFormattedTextField keyword1FormattedField = FontHighlightingFactory
-					.createFormattedTextField(currentPref, keyword1DisabledField);
+					.createFormattedTextField(currentPreference, keyword1DisabledField);
 
 			// keyword2
-			currentPref = "keyword2";
+			currentPreference = "keyword2";
 
-			final JLabel keyword2InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
+			final JLabel keyword2InfoLabel = FontHighlightingFactory.createInfoLabel(currentPreference);
 
 			final JLabel keyword2HashLabel = FontHighlightingFactory.createHashLabel();
 
-			keyword2DisabledField = FontHighlightingFactory.createDisabledTextField(currentPref);
+			keyword2DisabledField = FontHighlightingFactory.createDisabledTextField(currentPreference);
 
 			final JFormattedTextField keyword2FormattedField = FontHighlightingFactory
-					.createFormattedTextField(currentPref, keyword2DisabledField);
+					.createFormattedTextField(currentPreference, keyword2DisabledField);
 
 			// keyword3
-			currentPref = "keyword3";
+			currentPreference = "keyword3";
 
-			final JLabel keyword3InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
+			final JLabel keyword3InfoLabel = FontHighlightingFactory.createInfoLabel(currentPreference);
 
 			final JLabel keyword3HashLabel = FontHighlightingFactory.createHashLabel();
 
-			keyword3DisabledField = FontHighlightingFactory.createDisabledTextField(currentPref);
+			keyword3DisabledField = FontHighlightingFactory.createDisabledTextField(currentPreference);
 
 			final JFormattedTextField keyword3FormattedField = FontHighlightingFactory
-					.createFormattedTextField(currentPref, keyword3DisabledField);
+					.createFormattedTextField(currentPreference, keyword3DisabledField);
 
 			// keyword4
-			currentPref = "keyword4";
+			currentPreference = "keyword4";
 
-			final JLabel keyword4InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
+			final JLabel keyword4InfoLabel = FontHighlightingFactory.createInfoLabel(currentPreference);
 
 			final JLabel keyword4HashLabel = FontHighlightingFactory.createHashLabel();
 
-			keyword4DisabledField = FontHighlightingFactory.createDisabledTextField(currentPref);
+			keyword4DisabledField = FontHighlightingFactory.createDisabledTextField(currentPreference);
 
 			final JFormattedTextField keyword4FormattedField = FontHighlightingFactory
-					.createFormattedTextField(currentPref, keyword4DisabledField);
+					.createFormattedTextField(currentPreference, keyword4DisabledField);
 
 			// keyword5
-			currentPref = "keyword5";
+			currentPreference = "keyword5";
 
-			final JLabel keyword5InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
+			final JLabel keyword5InfoLabel = FontHighlightingFactory.createInfoLabel(currentPreference);
 
 			final JLabel keyword5HashLabel = FontHighlightingFactory.createHashLabel();
 
-			keyword5DisabledField = FontHighlightingFactory.createDisabledTextField(currentPref);
+			keyword5DisabledField = FontHighlightingFactory.createDisabledTextField(currentPreference);
 
 			final JFormattedTextField keyword5FormattedField = FontHighlightingFactory
-					.createFormattedTextField(currentPref, keyword5DisabledField);
+					.createFormattedTextField(currentPreference, keyword5DisabledField);
 
 			// keyword6
-			currentPref = "keyword6";
+			currentPreference = "keyword6";
 
-			final JLabel keyword6InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
+			final JLabel keyword6InfoLabel = FontHighlightingFactory.createInfoLabel(currentPreference);
 
 			final JLabel keyword6HashLabel = FontHighlightingFactory.createHashLabel();
 
-			keyword6DisabledField = FontHighlightingFactory.createDisabledTextField(currentPref);
+			keyword6DisabledField = FontHighlightingFactory.createDisabledTextField(currentPreference);
 
 			final JFormattedTextField keyword6FormattedField = FontHighlightingFactory
-					.createFormattedTextField(currentPref, keyword6DisabledField);
+					.createFormattedTextField(currentPreference, keyword6DisabledField);
 
 			// label
-			currentPref = "label";
+			currentPreference = "label";
 
-			final JLabel labelInfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
+			final JLabel labelInfoLabel = FontHighlightingFactory.createInfoLabel(currentPreference);
 
 			final JLabel labelHashLabel = FontHighlightingFactory.createHashLabel();
 
-			labelDisabledField = FontHighlightingFactory.createDisabledTextField(currentPref);
+			labelDisabledField = FontHighlightingFactory.createDisabledTextField(currentPreference);
 
 			final JFormattedTextField labelFormattedField = FontHighlightingFactory
-					.createFormattedTextField(currentPref, labelDisabledField);
+					.createFormattedTextField(currentPreference, labelDisabledField);
 
 			// literal1
-			currentPref = "literal1";
+			currentPreference = "literal1";
 
-			final JLabel literal1InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
+			final JLabel literal1InfoLabel = FontHighlightingFactory.createInfoLabel(currentPreference);
 
 			final JLabel literal1HashLabel = FontHighlightingFactory.createHashLabel();
 
-			literal1DisabledField = FontHighlightingFactory.createDisabledTextField(currentPref);
+			literal1DisabledField = FontHighlightingFactory.createDisabledTextField(currentPreference);
 
 			final JFormattedTextField literal1FormattedField = FontHighlightingFactory
-					.createFormattedTextField(currentPref, literal1DisabledField);
+					.createFormattedTextField(currentPreference, literal1DisabledField);
 
 			// literal2
-			currentPref = "literal2";
+			currentPreference = "literal2";
 
-			final JLabel literal2InfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
+			final JLabel literal2InfoLabel = FontHighlightingFactory.createInfoLabel(currentPreference);
 
 			final JLabel literal2HashLabel = FontHighlightingFactory.createHashLabel();
 
-			literal2DisabledField = FontHighlightingFactory.createDisabledTextField(currentPref);
+			literal2DisabledField = FontHighlightingFactory.createDisabledTextField(currentPreference);
 
 			final JFormattedTextField literal2FormattedField = FontHighlightingFactory
-					.createFormattedTextField(currentPref, literal2DisabledField);
+					.createFormattedTextField(currentPreference, literal2DisabledField);
 
 			// operator
-			currentPref = "operator";
+			currentPreference = "operator";
 
-			final JLabel operatorInfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
+			final JLabel operatorInfoLabel = FontHighlightingFactory.createInfoLabel(currentPreference);
 
 			final JLabel operatorHashLabel = FontHighlightingFactory.createHashLabel();
 
-			operatorDisabledField = FontHighlightingFactory.createDisabledTextField(currentPref);
+			operatorDisabledField = FontHighlightingFactory.createDisabledTextField(currentPreference);
 
 			final JFormattedTextField operatorFormattedField = FontHighlightingFactory
-					.createFormattedTextField(currentPref, operatorDisabledField);
+					.createFormattedTextField(currentPreference, operatorDisabledField);
 
 			// bgcolor
-			currentPref = "bgcolor";
+			currentPreference = "bgcolor";
 
-			final JLabel bgColorInfoLabel = FontHighlightingFactory.createInfoLabel(currentPref);
+			final JLabel bgColorInfoLabel = FontHighlightingFactory.createInfoLabel(currentPreference);
 
 			final JLabel bgColorHashLabel = FontHighlightingFactory.createHashLabel();
 
-			bgColorDisabledField = FontHighlightingFactory.createDisabledTextField(currentPref);
+			bgColorDisabledField = FontHighlightingFactory.createDisabledTextField(currentPreference);
 
 			final JFormattedTextField bgColorFormattedField = FontHighlightingFactory
-					.createFormattedTextField(currentPref, bgColorDisabledField);
-
-			// JLabel comment1HashLabel =
-			// FontHighlightingFactory.createHashLabel();
-			// JLabel comment1Label = new
-			// JLabel(FontHighlightingConstants.COMMENT1_NAME);
-			// comment1Label.setToolTipText(FontHighlightingConstants.COMMENT1_TOOLTIP);
-			// final JTextField comment1Field =
-			// this.setupTextField("editor.token.comment1.style");
-			// final JTextField comment1HexField =
-			// this.setupHexField("editor.token.comment1.style",
-			// comment1Field);
-			// comment1Chooser = new ColorChooser(this, false,
-			// Preferences.getColor("editor.token.comment1.style"),
-			// Language.text("prompt.ok"), new ActionListener() {
-			// @Override
-			// public void actionPerformed(ActionEvent e) {
-			// String colorValue = comment1Chooser.getHexColor();
-			// colorValue = colorValue.substring(1);
-			// comment1HexField.setText(colorValue);
-			// comment1Field.setBackground(new
-			// Color(PApplet.unhex(colorValue)));
-			// comment1Chooser.hide();
-			// }
-			// });
-			// this.setupMouseListener(comment1Field, comment1Chooser);
+					.createFormattedTextField(currentPreference, bgColorDisabledField);
 
 			/*
-			 * Setup the layout. Lots and lots of autogenerated code here.
+			 * Setup the layout
 			 */
+
 			layout = new GroupLayout(getContentPane());
 			layout.setHorizontalGroup(layout.createParallelGroup(Alignment.TRAILING)
 					.addGroup(layout.createSequentialGroup().addContainerGap()
@@ -770,51 +737,70 @@ public class FontHighlightingFrame extends JFrame {
 	}
 
 	private void applyPreferences() {
-		// TODO: implement this
-		dispose();
-	}
+		try {
+			/*
+			 * Using this approach because it automatically discards invalid
+			 * data typed in manually
+			 * 
+			 * TODO: find out which of these are actually used by anything
+			 */
+			FontHighlightingHelpers.setPreference("comment1", comment1DisabledField.getBackground());
+			FontHighlightingHelpers.setPreference("comment2", comment2DisabledField.getBackground());
+			FontHighlightingHelpers.setPreference("function1", function1DisabledField.getBackground());
+			FontHighlightingHelpers.setPreference("function2", function2DisabledField.getBackground());
+			FontHighlightingHelpers.setPreference("function3", function3DisabledField.getBackground());
+			FontHighlightingHelpers.setPreference("function4", function4DisabledField.getBackground());
+			FontHighlightingHelpers.setPreference("invalid", invalidDisabledField.getBackground());
+			FontHighlightingHelpers.setPreference("keyword1", keyword1DisabledField.getBackground());
+			FontHighlightingHelpers.setPreference("keyword2", keyword2DisabledField.getBackground());
+			FontHighlightingHelpers.setPreference("keyword3", keyword3DisabledField.getBackground());
+			FontHighlightingHelpers.setPreference("keyword4", keyword4DisabledField.getBackground());
+			FontHighlightingHelpers.setPreference("keyword5", keyword5DisabledField.getBackground());
+			FontHighlightingHelpers.setPreference("keyword6", keyword6DisabledField.getBackground());
+			FontHighlightingHelpers.setPreference("label", labelDisabledField.getBackground());
+			FontHighlightingHelpers.setPreference("literal1", literal1DisabledField.getBackground());
+			FontHighlightingHelpers.setPreference("literal2", literal2DisabledField.getBackground());
+			FontHighlightingHelpers.setPreference("operator", operatorDisabledField.getBackground());
+			FontHighlightingHelpers.setPreference("bgcolor", bgColorDisabledField.getBackground());
 
-	// Old factory code here
-	//
-	// /**
-	// * Sets up the mouse listener that makes an (invisible) text field
-	// activate
-	// * a ColorChooser
-	// *
-	// * @param comment1DisabledField
-	// * A disabled text field (see above)
-	// * @param chooser
-	// * A ColorChooser instance
-	// */
-	// private void setupMouseListener(final JTextField comment1DisabledField,
-	// final
-	// ColorChooser chooser) {
-	// comment1DisabledField.addMouseListener(new MouseAdapter() {
-	// @Override
-	// public void mouseExited(MouseEvent e) {
-	// setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-	// }
-	//
-	// @Override
-	// public void mouseEntered(MouseEvent e) {
-	// setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-	// }
-	//
-	// @Override
-	// public void mouseClicked(MouseEvent e) {
-	// chooser.show();
-	// }
-	// });
-	// }
+			/*
+			 * 3.0.2 and lower
+			 */
+			if (Base.getRevision() <= 249) {
+				JOptionPane.showMessageDialog(null, "A restart is required to apply the changes.", "Warning",
+						JOptionPane.WARNING_MESSAGE);
+			} else {
+				/*
+				 * Reflection hack - otherwise this would cause a compile-time
+				 * error on <3.0.2
+				 */
+				for (Editor editor : base.getEditors()) {
+					// editor.applyPreferences();
+					Method m = null;
+					try {
+						m = editor.getClass().getDeclaredMethod("applyPreferences", null);
+					} catch (NoSuchMethodException e) {
+						e.printStackTrace();
+					} catch (SecurityException e) {
+						e.printStackTrace();
+					}
+					m.setAccessible(true);
+					try {
+						m.invoke(editor, null);
+					} catch (IllegalAccessException e) {
+						e.printStackTrace();
+					} catch (IllegalArgumentException e) {
+						e.printStackTrace();
+					} catch (InvocationTargetException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 
-	/**
-	 * Loads the image located at a provided path
-	 * 
-	 * @param filePath
-	 *            The path to the image (filename included)
-	 * @return An image located at the given path
-	 */
-	private Image loadImage(String filePath) {
-		return new ImageIcon(this.getClass().getResource(filePath)).getImage();
+			this.dispose();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 }

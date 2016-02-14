@@ -1,8 +1,12 @@
 package fonthighlightingeditor.utils;
 
-import java.awt.Color;
+import java.awt.*;
+
+import javax.swing.ImageIcon;
 
 import processing.app.Preferences;
+
+import fonthighlightingeditor.tool.FontHighlightingFrame;
 
 public class FontHighlightingHelpers {
 	/**
@@ -19,8 +23,8 @@ public class FontHighlightingHelpers {
 			s = Preferences.get("run.window." + preferenceName);
 		} else {
 			s = Preferences.get("editor.token." + preferenceName + ".style");
-
 		}
+
 		int index = s.lastIndexOf(",");
 		if (index == -1) {
 			return s.substring(1).toUpperCase();
@@ -38,5 +42,43 @@ public class FontHighlightingHelpers {
 	 */
 	public static Color extractColor(String preferenceName) {
 		return Color.decode("#" + extractColorString(preferenceName));
+	}
+
+	/**
+	 * @param preferenceName
+	 *            The name of the preference
+	 * @param color
+	 *            The color the preference will be set to
+	 */
+	public static void setPreference(String preferenceName, Color color) {
+		String s;
+		if (preferenceName == "bgcolor") {
+			s = Preferences.get("run.window." + preferenceName);
+		} else {
+			s = Preferences.get("editor.token." + preferenceName + ".style");
+		}
+
+		String newPreference = String.format("#%06X", (0xFFFFFF & color.getRGB())) + s.substring(7);
+
+		/*
+		 * Some defaults are in lowercase, some in uppercase - let's keep things
+		 * uppercase
+		 */
+		if (preferenceName == "bgcolor") {
+			Preferences.set("run.window." + preferenceName, newPreference.toUpperCase());
+		} else {
+			Preferences.set("editor.token." + preferenceName + ".style", newPreference.toUpperCase());
+		}
+	}
+
+	/**
+	 * Loads the image located at a provided path.
+	 * 
+	 * @param filePath
+	 *            The path to the image (filename included)
+	 * @return An image located at the given path
+	 */
+	public static Image loadImage(String filePath) {
+		return new ImageIcon(FontHighlightingFrame.class.getResource(filePath)).getImage();
 	}
 }
