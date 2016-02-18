@@ -48,7 +48,6 @@ public class FontHighlightingConstants {
 	public static final String TOOL_NAME = "##tool.name##";
 	public static final String STARTUP_INFO = TOOL_NAME + " v. ##tool.prettyVersion## by ##author.name##.\n"
 			+ "Please report any issues at ##source.url##\n";
-	public static final String TEXTAREA_INFO = "Use this tool to modify PDE's font highlighting settings.\n(Hover over the name of each setting to display info)";
 
 	@SuppressWarnings("serial")
 	public static final Map<String, String> TOOLTIPS = new HashMap<String, String>() {
