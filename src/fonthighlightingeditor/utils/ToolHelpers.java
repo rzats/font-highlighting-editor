@@ -8,7 +8,11 @@ import processing.app.Preferences;
 
 import fonthighlightingeditor.tool.FontHighlightingFrame;
 
-public class FontHighlightingHelpers {
+/**
+ * Assorted helper methods used by the tool.
+ */
+
+public class ToolHelpers {
 	/**
 	 * Extracts a string representing a color from an editor.token.*.style
 	 * preference
@@ -63,7 +67,7 @@ public class FontHighlightingHelpers {
 		String newPreference = String.format("#%06X", (0xFFFFFF & color.getRGB())) + s.substring(7);
 
 		/*
-		 * Some defaults are in lowercase, some in uppercase - let's keep things
+		 * Some defaults are in lowercase, some in uppercase - sticking to
 		 * uppercase
 		 */
 		if (preferenceName == "bgcolor") {

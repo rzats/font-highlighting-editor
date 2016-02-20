@@ -29,14 +29,12 @@ import javax.swing.*;
 
 import processing.app.Base;
 import processing.app.tools.Tool;
-import processing.app.ui.Editor;
 
-import fonthighlightingeditor.constants.FontHighlightingConstants;
+import fonthighlightingeditor.utils.ToolConstants;
 
 public class FontHighlightingEditor implements Tool {
-	Base base;
-	Editor editor;
-	static FontHighlightingFrame frame;
+	private Base base;
+	private static FontHighlightingFrame frame;
 
 	public String getMenuTitle() {
 		return "##tool.name##";
@@ -58,15 +56,15 @@ public class FontHighlightingEditor implements Tool {
 						// Don't close the entire PDE along with the tool
 						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-						System.out.println(FontHighlightingConstants.STARTUP_INFO);
+						System.out.println(ToolConstants.STARTUP_INFO);
 					} catch (Exception e) {
-						System.out.println(FontHighlightingConstants.INVOKELATER_INNER_EXCEPTION);
+						System.out.println(ToolConstants.INVOKELATER_INNER_EXCEPTION);
 						e.printStackTrace();
 					}
 				}
 			});
 		} catch (Exception e) {
-			System.out.println(FontHighlightingConstants.INVOKELATER_OUTER_EXCEPTION);
+			System.out.println(ToolConstants.INVOKELATER_OUTER_EXCEPTION);
 			e.printStackTrace();
 		}
 	}

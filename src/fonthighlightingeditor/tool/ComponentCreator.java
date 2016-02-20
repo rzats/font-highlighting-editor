@@ -1,20 +1,24 @@
 package fonthighlightingeditor.tool;
 
-import java.awt.Color;
+import java.awt.*;
+import java.awt.event.*;
 import java.text.ParseException;
 
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.text.MaskFormatter;
 
+import processing.app.ui.ColorChooser;
 import processing.core.PApplet;
 
-import fonthighlightingeditor.constants.FontHighlightingConstants;
-import fonthighlightingeditor.utils.FontHighlightingHelpers;
+import fonthighlightingeditor.utils.*;
 
-public class FontHighlightingFactory {
+/**
+ * Creates some repeatable controls in the frame
+ */
+public class ComponentCreator {
 	/**
-	 * Generates a label containing info about a preference
+	 * Creates a label containing info about a preference
 	 * 
 	 * @param preferenceName
 	 *            The name of the preference the label refers to
@@ -22,22 +26,22 @@ public class FontHighlightingFactory {
 	 */
 	public static JLabel createInfoLabel(String preferenceName) {
 		final JLabel label = new JLabel(preferenceName + ":");
-		label.setToolTipText("<html>" + FontHighlightingConstants.TOOLTIPS.get(preferenceName) + "</html>");
+		label.setToolTipText("<html>" + ToolConstants.TOOLTIPS.get(preferenceName) + "</html>");
 
 		return label;
 	}
 
 	/**
-	 * Generates a label with a hash text. This mostly exists for consistency
+	 * Creates a label with a hash text. This mostly exists for consistency
 	 * 
 	 * @return A label containing the character "#"
 	 */
 	public static JLabel createHashLabel() {
-		return new JLabel("#");
+		return new JLabel("#", SwingConstants.CENTER);
 	}
 
 	/**
-	 * Sets up a disabled "text field" used to call colorChooser and show the
+	 * Creates a disabled "text field" used to call colorChooser and show the
 	 * current color selection
 	 *
 	 * @param preferenceName
@@ -47,13 +51,14 @@ public class FontHighlightingFactory {
 	public static JTextField createDisabledTextField(String preferenceName) {
 		JTextField field = new JTextField(" ");
 		field.setOpaque(true);
-		field.setEnabled(false);
-		field.setBackground(FontHighlightingHelpers.extractColor(preferenceName));
+		field.setEnabled(true);
+		field.setEditable(false);
+		field.setBackground(ToolHelpers.extractColor(preferenceName));
 		return field;
 	}
 
 	/**
-	 * Sets up a formatted text field used to edit the preference
+	 * Creates a formatted text field used to edit the preference
 	 *
 	 * @param preferenceName
 	 *            The name of the preference the field refers to
@@ -62,8 +67,6 @@ public class FontHighlightingFactory {
 	 * @return An instantiated JFormattedTextField
 	 */
 	public static JFormattedTextField createFormattedTextField(String preferenceName, final JTextField textField) {
-		// 6-character hex code
-
 		MaskFormatter formatter = null;
 		try {
 			formatter = new MaskFormatter("HHHHHH");
@@ -72,26 +75,26 @@ public class FontHighlightingFactory {
 		}
 
 		// Initialize the field
-		final JFormattedTextField formattedField = new JFormattedTextField(formatter);
-		formattedField.setText(FontHighlightingHelpers.extractColorString(preferenceName));
+		final JFormattedTextField formattedTextField = new JFormattedTextField(formatter);
+		formattedTextField.setColumns(10);
+		formattedTextField.setText(ToolHelpers.extractColorString(preferenceName));
 
-		// Respond to disabled field changes
-		formattedField.getDocument().addDocumentListener(new DocumentListener() {
+		// Respond to changes
+		formattedTextField.getDocument().addDocumentListener(new DocumentListener() {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				// Unnecessary for JFormattedTextField
 			}
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				final String colorValue = formattedField.getText().toUpperCase();
+				final String colorValue = formattedTextField.getText().toUpperCase();
 				if (colorValue.length() == 6 && colorValue.matches("[0123456789ABCDEF]*")) {
 					textField.setBackground(new Color(PApplet.unhex(colorValue)));
-					if (!colorValue.equals(formattedField.getText())) {
+					if (!colorValue.equals(formattedTextField.getText())) {
 						SwingUtilities.invokeLater(new Runnable() {
 							public void run() {
-								formattedField.setText(colorValue);
+								formattedTextField.setText(colorValue);
 							}
 						});
 					}
@@ -100,10 +103,29 @@ public class FontHighlightingFactory {
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				// Unnecessary for text fields
 			}
 		});
 
-		return formattedField;
+		return formattedTextField;
+	}
+
+	public static void setupMouseListener(final FontHighlightingFrame frame, JTextField disabledField,
+			final ColorChooser chooser) {
+		disabledField.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				frame.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				frame.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				chooser.show();
+			}
+		});
 	}
 }

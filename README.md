@@ -6,8 +6,6 @@ Font Highlighting Editor is a [Processing](http://www.processing.org) tool that 
 
 ## Installation - Automatic
 
-[CURRENTLY UNAVAILABLE - ADDITION TO CONTRIB MANAGER PENDING]
-
 Install the tool using Processing's contribution manager. (*Tools → Add Tool...*)
 
 ## Installation - Manual
