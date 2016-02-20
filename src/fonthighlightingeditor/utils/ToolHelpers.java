@@ -68,12 +68,12 @@ public class ToolHelpers {
 
 		/*
 		 * Some defaults are in lowercase, some in uppercase - sticking to
-		 * uppercase
+		 * lowercase
 		 */
 		if (preferenceName == "bgcolor") {
-			Preferences.set("run.window." + preferenceName, newPreference.toUpperCase());
+			Preferences.set("run.window." + preferenceName, newPreference.toLowerCase());
 		} else {
-			Preferences.set("editor.token." + preferenceName + ".style", newPreference.toUpperCase());
+			Preferences.set("editor.token." + preferenceName + ".style", newPreference.toLowerCase());
 		}
 	}
 

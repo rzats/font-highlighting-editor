@@ -51,13 +51,16 @@ public final class ToolConstants {
 	public static final String INVOKELATER_OUTER_EXCEPTION = EXCEPTION_HEADER + "invokeLater()";
 	public static final String INVOKELATER_INNER_EXCEPTION = EXCEPTION_HEADER + "invokeLater() -> run()";
 	public static final String FRAME_SETUP_EXCEPTION = EXCEPTION_HEADER + "frame -> setupLayout()";
-
+	public static final String APPLY_CHANGES_EXCEPTION = EXCEPTION_HEADER + "frame -> applyChanges()";
+	public static final String DISCARD_CHANGES_EXCEPTION = EXCEPTION_HEADER + "frame -> discardChanges()";
 	// UI strings
 
 	public static final String TOOL_NAME = "##tool.name##";
 	public static final String STARTUP_INFO = TOOL_NAME + " v. ##tool.prettyVersion##\nby ##author.name##.\n"
 			+ "Please report any issues at ##source.url##\n";
 	public static final String HEADER_MESSAGE = "<html>Use this tool to modify PDE's font highlighting settings.<br>(Hover over the name of each setting to display info)</html>";
+	public static final String RESTART_REQUIRED_TITLE = "Warning";
+	public static final String RESTART_REQUIRED_MESSAGE = "Restart PDE to apply the changes.";
 
 	@SuppressWarnings("serial")
 	public static final Map<String, String> TOOLTIPS = new HashMap<String, String>() {

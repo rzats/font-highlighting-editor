@@ -42,7 +42,7 @@ import fonthighlightingeditor.utils.*;
 public class FontHighlightingFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 
-	private Base base;
+	// private Base base;
 
 	private GroupLayout layout;
 	private JFormattedTextField formattedFieldComment1;
@@ -54,6 +54,16 @@ public class FontHighlightingFrame extends JFrame {
 	private JFormattedTextField formattedFieldInvalid;
 	private JFormattedTextField formattedFieldKeyword1;
 	private JFormattedTextField formattedFieldKeyword2;
+	private JFormattedTextField formattedFieldKeyword3;
+	private JFormattedTextField formattedFieldKeyword4;
+	private JFormattedTextField formattedFieldKeyword5;
+	private JFormattedTextField formattedFieldKeyword6;
+	private JFormattedTextField formattedFieldLabel;
+	private JFormattedTextField formattedFieldLiteral1;
+	private JFormattedTextField formattedFieldLiteral2;
+	private JFormattedTextField formattedFieldOperator;
+	private JFormattedTextField formattedFieldBgColor;
+
 	private JTextField disabledFieldComment1;
 	private JTextField disabledFieldComment2;
 	private JTextField disabledFieldFunction1;
@@ -63,24 +73,16 @@ public class FontHighlightingFrame extends JFrame {
 	private JTextField disabledFieldInvalid;
 	private JTextField disabledFieldKeyword1;
 	private JTextField disabledFieldKeyword2;
-	private JTextField textField_18;
-	private JTextField textField_19;
-	private JTextField textField_20;
-	private JTextField textField_21;
-	private JTextField textField_22;
-	private JTextField textField_23;
-	private JTextField textField_24;
-	private JTextField textField_25;
-	private JTextField textField_26;
-	private JTextField textField_27;
-	private JTextField textField_28;
-	private JTextField textField_29;
-	private JTextField textField_30;
-	private JTextField textField_31;
-	private JTextField textField_32;
-	private JTextField textField_33;
-	private JTextField textField_34;
-	private JTextField textField_35;
+	private JTextField disabledFieldKeyword3;
+	private JTextField disabledFieldKeyword4;
+	private JTextField disabledFieldKeyword5;
+	private JTextField disabledFieldKeyword6;
+	private JTextField disabledFieldLabel;
+	private JTextField disabledFieldLiteral1;
+	private JTextField disabledFieldLiteral2;
+	private JTextField disabledFieldOperator;
+	private JTextField disabledFieldBgColor;
+
 	private ColorChooser colorChooserComment1;
 	private ColorChooser colorChooserComment2;
 	private ColorChooser colorChooserFunction1;
@@ -90,9 +92,18 @@ public class FontHighlightingFrame extends JFrame {
 	private ColorChooser colorChooserInvalid;
 	private ColorChooser colorChooserKeyword1;
 	private ColorChooser colorChooserKeyword2;
+	private ColorChooser colorChooserKeyword3;
+	private ColorChooser colorChooserKeyword4;
+	private ColorChooser colorChooserKeyword5;
+	private ColorChooser colorChooserKeyword6;
+	private ColorChooser colorChooserLabel;
+	private ColorChooser colorChooserLiteral1;
+	private ColorChooser colorChooserLiteral2;
+	private ColorChooser colorChooserOperator;
+	private ColorChooser colorChooserBgColor;
 
 	public FontHighlightingFrame(Base base) {
-		this.base = base;
+		// this.base = base;
 
 		setupFrame();
 	}
@@ -334,110 +345,212 @@ public class FontHighlightingFrame extends JFrame {
 
 			ComponentCreator.setupMouseListener(this, disabledFieldKeyword2, colorChooserKeyword2);
 
-			final JLabel label_17 = new JLabel("comment1:");
+			// keyword3
+			currentPreference = "keyword3";
 
-			final JLabel label_18 = new JLabel("comment1:");
+			final JLabel infoLabelKeyword3 = ComponentCreator.createInfoLabel(currentPreference);
+			final JLabel hashLabelKeyword3 = ComponentCreator.createHashLabel();
 
-			final JLabel label_19 = new JLabel("comment1:");
+			disabledFieldKeyword3 = ComponentCreator.createDisabledTextField(currentPreference);
+			formattedFieldKeyword3 = ComponentCreator.createFormattedTextField(currentPreference,
+					disabledFieldKeyword3);
 
-			final JLabel label_20 = new JLabel("comment1:");
+			colorChooserKeyword3 = new ColorChooser(this, false, ToolHelpers.extractColor(currentPreference),
+					Language.text("prompt.ok"), new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							String colorValue = colorChooserKeyword3.getHexColor();
+							formattedFieldKeyword3.setText(colorValue.substring(1));
+							colorChooserKeyword3.hide();
+						}
+					});
 
-			final JLabel label_21 = new JLabel("comment1:");
+			ComponentCreator.setupMouseListener(this, disabledFieldKeyword3, colorChooserKeyword3);
 
-			final JLabel label_22 = new JLabel("comment1:");
+			// keyword4
+			currentPreference = "keyword4";
 
-			final JLabel label_23 = new JLabel("comment1:");
+			final JLabel infoLabelKeyword4 = ComponentCreator.createInfoLabel(currentPreference);
+			final JLabel hashLabelKeyword4 = ComponentCreator.createHashLabel();
 
-			final JLabel label_24 = new JLabel("comment1:");
+			disabledFieldKeyword4 = ComponentCreator.createDisabledTextField(currentPreference);
+			formattedFieldKeyword4 = ComponentCreator.createFormattedTextField(currentPreference,
+					disabledFieldKeyword4);
 
-			final JLabel label_25 = new JLabel("comment1:");
+			colorChooserKeyword4 = new ColorChooser(this, false, ToolHelpers.extractColor(currentPreference),
+					Language.text("prompt.ok"), new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							String colorValue = colorChooserKeyword4.getHexColor();
+							formattedFieldKeyword4.setText(colorValue.substring(1));
+							colorChooserKeyword4.hide();
+						}
+					});
 
-			final JLabel label_26 = ComponentCreator.createHashLabel();
+			ComponentCreator.setupMouseListener(this, disabledFieldKeyword4, colorChooserKeyword4);
 
-			final JLabel label_27 = ComponentCreator.createHashLabel();
+			// keyword5
+			currentPreference = "keyword5";
 
-			final JLabel label_28 = ComponentCreator.createHashLabel();
+			final JLabel infoLabelKeyword5 = ComponentCreator.createInfoLabel(currentPreference);
+			final JLabel hashLabelKeyword5 = ComponentCreator.createHashLabel();
 
-			final JLabel label_29 = ComponentCreator.createHashLabel();
+			disabledFieldKeyword5 = ComponentCreator.createDisabledTextField(currentPreference);
+			formattedFieldKeyword5 = ComponentCreator.createFormattedTextField(currentPreference,
+					disabledFieldKeyword5);
 
-			final JLabel label_30 = ComponentCreator.createHashLabel();
+			colorChooserKeyword5 = new ColorChooser(this, false, ToolHelpers.extractColor(currentPreference),
+					Language.text("prompt.ok"), new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							String colorValue = colorChooserKeyword5.getHexColor();
+							formattedFieldKeyword5.setText(colorValue.substring(1));
+							colorChooserKeyword5.hide();
+						}
+					});
 
-			final JLabel label_31 = ComponentCreator.createHashLabel();
+			ComponentCreator.setupMouseListener(this, disabledFieldKeyword5, colorChooserKeyword5);
 
-			final JLabel label_32 = ComponentCreator.createHashLabel();
+			// keyword6
+			currentPreference = "keyword6";
 
-			final JLabel label_33 = ComponentCreator.createHashLabel();
+			final JLabel infoLabelKeyword6 = ComponentCreator.createInfoLabel(currentPreference);
+			final JLabel hashLabelKeyword6 = ComponentCreator.createHashLabel();
 
-			final JLabel label_34 = ComponentCreator.createHashLabel();
+			disabledFieldKeyword6 = ComponentCreator.createDisabledTextField(currentPreference);
+			formattedFieldKeyword6 = ComponentCreator.createFormattedTextField(currentPreference,
+					disabledFieldKeyword6);
 
-			textField_18 = new JTextField();
-			textField_18.setColumns(10);
+			colorChooserKeyword6 = new ColorChooser(this, false, ToolHelpers.extractColor(currentPreference),
+					Language.text("prompt.ok"), new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							String colorValue = colorChooserKeyword6.getHexColor();
+							formattedFieldKeyword6.setText(colorValue.substring(1));
+							colorChooserKeyword6.hide();
+						}
+					});
 
-			textField_19 = new JTextField();
-			textField_19.setColumns(10);
+			ComponentCreator.setupMouseListener(this, disabledFieldKeyword6, colorChooserKeyword6);
 
-			textField_20 = new JTextField();
-			textField_20.setColumns(10);
+			// label
+			currentPreference = "label";
 
-			textField_21 = new JTextField();
-			textField_21.setColumns(10);
+			final JLabel infoLabelLabel = ComponentCreator.createInfoLabel(currentPreference);
+			final JLabel hashLabelLabel = ComponentCreator.createHashLabel();
 
-			textField_22 = new JTextField();
-			textField_22.setColumns(10);
+			disabledFieldLabel = ComponentCreator.createDisabledTextField(currentPreference);
+			formattedFieldLabel = ComponentCreator.createFormattedTextField(currentPreference, disabledFieldLabel);
 
-			textField_23 = new JTextField();
-			textField_23.setColumns(10);
+			colorChooserLabel = new ColorChooser(this, false, ToolHelpers.extractColor(currentPreference),
+					Language.text("prompt.ok"), new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							String colorValue = colorChooserLabel.getHexColor();
+							formattedFieldLabel.setText(colorValue.substring(1));
+							colorChooserLabel.hide();
+						}
+					});
 
-			textField_24 = new JTextField();
-			textField_24.setColumns(10);
+			ComponentCreator.setupMouseListener(this, disabledFieldLabel, colorChooserLabel);
 
-			textField_25 = new JTextField();
-			textField_25.setColumns(10);
+			// literal1
+			currentPreference = "literal1";
 
-			textField_26 = new JTextField();
-			textField_26.setColumns(10);
+			final JLabel infoLabelLiteral1 = ComponentCreator.createInfoLabel(currentPreference);
+			final JLabel hashLabelLiteral1 = ComponentCreator.createHashLabel();
 
-			textField_27 = new JTextField();
-			textField_27.setEditable(false);
-			textField_27.setColumns(10);
+			disabledFieldLiteral1 = ComponentCreator.createDisabledTextField(currentPreference);
+			formattedFieldLiteral1 = ComponentCreator.createFormattedTextField(currentPreference,
+					disabledFieldLiteral1);
 
-			textField_28 = new JTextField();
-			textField_28.setEditable(false);
-			textField_28.setColumns(10);
+			colorChooserLiteral1 = new ColorChooser(this, false, ToolHelpers.extractColor(currentPreference),
+					Language.text("prompt.ok"), new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							String colorValue = colorChooserLiteral1.getHexColor();
+							formattedFieldLiteral1.setText(colorValue.substring(1));
+							colorChooserLiteral1.hide();
+						}
+					});
 
-			textField_29 = new JTextField();
-			textField_29.setEditable(false);
-			textField_29.setColumns(10);
+			ComponentCreator.setupMouseListener(this, disabledFieldLiteral1, colorChooserLiteral1);
 
-			textField_30 = new JTextField();
-			textField_30.setEditable(false);
-			textField_30.setColumns(10);
+			// literal2
+			currentPreference = "literal2";
 
-			textField_31 = new JTextField();
-			textField_31.setEditable(false);
-			textField_31.setColumns(10);
+			final JLabel infoLabelLiteral2 = ComponentCreator.createInfoLabel(currentPreference);
+			final JLabel hashLabelLiteral2 = ComponentCreator.createHashLabel();
 
-			textField_32 = new JTextField();
-			textField_32.setEditable(false);
-			textField_32.setColumns(10);
+			disabledFieldLiteral2 = ComponentCreator.createDisabledTextField(currentPreference);
+			formattedFieldLiteral2 = ComponentCreator.createFormattedTextField(currentPreference,
+					disabledFieldLiteral2);
 
-			textField_33 = new JTextField();
-			textField_33.setEditable(false);
-			textField_33.setColumns(10);
+			colorChooserLiteral2 = new ColorChooser(this, false, ToolHelpers.extractColor(currentPreference),
+					Language.text("prompt.ok"), new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							String colorValue = colorChooserLiteral2.getHexColor();
+							formattedFieldLiteral2.setText(colorValue.substring(1));
+							colorChooserLiteral2.hide();
+						}
+					});
 
-			textField_34 = new JTextField();
-			textField_34.setEditable(false);
-			textField_34.setColumns(10);
+			ComponentCreator.setupMouseListener(this, disabledFieldLiteral2, colorChooserLiteral2);
 
-			textField_35 = new JTextField();
-			textField_35.setEditable(false);
-			textField_35.setColumns(10);
+			// operator
+			currentPreference = "operator";
+
+			final JLabel infoLabelOperator = ComponentCreator.createInfoLabel(currentPreference);
+			final JLabel hashLabelOperator = ComponentCreator.createHashLabel();
+
+			disabledFieldOperator = ComponentCreator.createDisabledTextField(currentPreference);
+			formattedFieldOperator = ComponentCreator.createFormattedTextField(currentPreference,
+					disabledFieldOperator);
+
+			colorChooserOperator = new ColorChooser(this, false, ToolHelpers.extractColor(currentPreference),
+					Language.text("prompt.ok"), new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							String colorValue = colorChooserOperator.getHexColor();
+							formattedFieldOperator.setText(colorValue.substring(1));
+							colorChooserOperator.hide();
+						}
+					});
+
+			ComponentCreator.setupMouseListener(this, disabledFieldOperator, colorChooserOperator);
+
+			// window.bgcolor
+			currentPreference = "bgcolor";
+
+			final JLabel infoLabelBgColor = ComponentCreator.createInfoLabel(currentPreference);
+			final JLabel hashLabelBgColor = ComponentCreator.createHashLabel();
+
+			disabledFieldBgColor = ComponentCreator.createDisabledTextField(currentPreference);
+			formattedFieldBgColor = ComponentCreator.createFormattedTextField(currentPreference, disabledFieldBgColor);
+
+			colorChooserBgColor = new ColorChooser(this, false, ToolHelpers.extractColor(currentPreference),
+					Language.text("prompt.ok"), new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							String colorValue = colorChooserBgColor.getHexColor();
+							formattedFieldBgColor.setText(colorValue.substring(1));
+							colorChooserBgColor.hide();
+						}
+					});
+
+			ComponentCreator.setupMouseListener(this, disabledFieldBgColor, colorChooserBgColor);
 
 			// -----
 			final JSeparator bottomSeparator = new JSeparator();
 
 			// [Discard Changes]
 			final JButton btnDiscardChanges = new JButton("Discard Changes");
+			btnDiscardChanges.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					discardChanges();
+				}
+			});
 
 			// [OK]
 			final JButton btnOK = new JButton("OK");
@@ -481,14 +594,15 @@ public class FontHighlightingFrame extends JFrame {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(disabledFieldComment1, GroupLayout.PREFERRED_SIZE, 26,
 									GroupLayout.PREFERRED_SIZE).addGap(18)
-							.addComponent(label_17, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+							.addComponent(infoLabelKeyword3, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(label_26, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+							.addComponent(hashLabelKeyword3, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_18, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-									GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_27, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-							.addGap(18))
+							.addComponent(formattedFieldKeyword3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(disabledFieldKeyword3, GroupLayout.PREFERRED_SIZE, 26,
+									GroupLayout.PREFERRED_SIZE).addGap(18))
 					.addGroup(
 							layout.createSequentialGroup().addContainerGap()
 									.addComponent(infoLabelComment2, GroupLayout.PREFERRED_SIZE, 96,
@@ -502,14 +616,15 @@ public class FontHighlightingFrame extends JFrame {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(disabledFieldComment2, GroupLayout.PREFERRED_SIZE, 26,
 									GroupLayout.PREFERRED_SIZE).addGap(18)
-							.addComponent(label_18, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+							.addComponent(infoLabelKeyword4, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(label_27, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+							.addComponent(hashLabelKeyword4, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_19, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-									GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_28, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(18, Short.MAX_VALUE))
+							.addComponent(formattedFieldKeyword4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(disabledFieldKeyword4, GroupLayout.PREFERRED_SIZE, 26,
+									GroupLayout.PREFERRED_SIZE).addContainerGap(18, Short.MAX_VALUE))
 					.addGroup(layout.createSequentialGroup().addContainerGap()
 							.addComponent(infoLabelFunction1, GroupLayout.PREFERRED_SIZE, 96,
 									GroupLayout.PREFERRED_SIZE)
@@ -523,14 +638,15 @@ public class FontHighlightingFrame extends JFrame {
 							.addComponent(disabledFieldFunction1, GroupLayout.PREFERRED_SIZE, 26,
 									GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(label_19, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+							.addComponent(infoLabelKeyword5, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(label_28, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+							.addComponent(hashLabelKeyword5, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_20, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(formattedFieldKeyword5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_29, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+							.addComponent(disabledFieldKeyword5, GroupLayout.PREFERRED_SIZE, 26,
+									GroupLayout.PREFERRED_SIZE)
 							.addContainerGap(18, Short.MAX_VALUE))
 					.addGroup(layout.createSequentialGroup().addContainerGap()
 							.addComponent(infoLabelFunction2, GroupLayout.PREFERRED_SIZE, 96,
@@ -545,14 +661,15 @@ public class FontHighlightingFrame extends JFrame {
 							.addComponent(disabledFieldFunction2, GroupLayout.PREFERRED_SIZE, 26,
 									GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(label_20, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+							.addComponent(infoLabelKeyword6, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(label_29, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+							.addComponent(hashLabelKeyword6, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_21, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(formattedFieldKeyword6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_30, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+							.addComponent(disabledFieldKeyword6, GroupLayout.PREFERRED_SIZE, 26,
+									GroupLayout.PREFERRED_SIZE)
 							.addContainerGap(18, Short.MAX_VALUE))
 					.addGroup(layout.createSequentialGroup().addContainerGap()
 							.addComponent(infoLabelFunction3, GroupLayout.PREFERRED_SIZE, 96,
@@ -567,14 +684,15 @@ public class FontHighlightingFrame extends JFrame {
 							.addComponent(disabledFieldFunction3, GroupLayout.PREFERRED_SIZE, 26,
 									GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(label_21, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+							.addComponent(infoLabelLabel, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(label_30, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+							.addComponent(hashLabelLabel, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_22, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(formattedFieldLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_31, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+							.addComponent(disabledFieldLabel, GroupLayout.PREFERRED_SIZE, 26,
+									GroupLayout.PREFERRED_SIZE)
 							.addContainerGap(18, Short.MAX_VALUE))
 					.addGroup(layout.createSequentialGroup().addContainerGap()
 							.addComponent(infoLabelFunction4, GroupLayout.PREFERRED_SIZE, 96,
@@ -589,14 +707,15 @@ public class FontHighlightingFrame extends JFrame {
 							.addComponent(disabledFieldFunction4, GroupLayout.PREFERRED_SIZE, 26,
 									GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(label_22, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+							.addComponent(infoLabelLiteral1, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(label_31, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+							.addComponent(hashLabelLiteral1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_23, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(formattedFieldLiteral1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_32, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+							.addComponent(disabledFieldLiteral1, GroupLayout.PREFERRED_SIZE, 26,
+									GroupLayout.PREFERRED_SIZE)
 							.addContainerGap(18, Short.MAX_VALUE))
 					.addGroup(
 							layout.createSequentialGroup().addContainerGap()
@@ -611,14 +730,15 @@ public class FontHighlightingFrame extends JFrame {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(disabledFieldInvalid, GroupLayout.PREFERRED_SIZE, 26,
 									GroupLayout.PREFERRED_SIZE).addGap(18)
-							.addComponent(label_23, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+							.addComponent(infoLabelLiteral2, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(label_32, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+							.addComponent(hashLabelLiteral2, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_24, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-									GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_33, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(18, Short.MAX_VALUE))
+							.addComponent(formattedFieldLiteral2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(disabledFieldLiteral2, GroupLayout.PREFERRED_SIZE, 26,
+									GroupLayout.PREFERRED_SIZE).addContainerGap(18, Short.MAX_VALUE))
 					.addGroup(
 							layout.createSequentialGroup().addContainerGap()
 									.addComponent(infoLabelKeyword1, GroupLayout.PREFERRED_SIZE, 96,
@@ -632,14 +752,15 @@ public class FontHighlightingFrame extends JFrame {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(disabledFieldKeyword1, GroupLayout.PREFERRED_SIZE, 26,
 									GroupLayout.PREFERRED_SIZE).addGap(18)
-							.addComponent(label_24, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+							.addComponent(infoLabelOperator, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(label_33, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+							.addComponent(hashLabelOperator, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_25, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-									GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_34, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(18, Short.MAX_VALUE))
+							.addComponent(formattedFieldOperator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+									GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(disabledFieldOperator, GroupLayout.PREFERRED_SIZE, 26,
+									GroupLayout.PREFERRED_SIZE).addContainerGap(18, Short.MAX_VALUE))
 					.addGroup(
 							layout.createSequentialGroup().addContainerGap()
 									.addComponent(infoLabelKeyword2, GroupLayout.PREFERRED_SIZE, 96,
@@ -653,14 +774,14 @@ public class FontHighlightingFrame extends JFrame {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(disabledFieldKeyword2, GroupLayout.PREFERRED_SIZE, 26,
 									GroupLayout.PREFERRED_SIZE).addGap(18)
-							.addComponent(label_25, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+							.addComponent(infoLabelBgColor, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(label_34, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+							.addComponent(hashLabelBgColor, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_26, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(formattedFieldBgColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_35, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(18, Short.MAX_VALUE)));
+							.addComponent(disabledFieldBgColor, GroupLayout.PREFERRED_SIZE, 26,
+									GroupLayout.PREFERRED_SIZE).addContainerGap(18, Short.MAX_VALUE)));
 			layout.setVerticalGroup(
 					layout.createParallelGroup(Alignment.TRAILING)
 							.addGroup(layout.createSequentialGroup().addContainerGap().addComponent(lblNewLabel)
@@ -674,10 +795,10 @@ public class FontHighlightingFrame extends JFrame {
 									GroupLayout.PREFERRED_SIZE)
 							.addComponent(disabledFieldComment1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addComponent(label_17).addComponent(label_26)
-							.addComponent(textField_18, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(infoLabelKeyword3).addComponent(hashLabelKeyword3)
+							.addComponent(formattedFieldKeyword3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addComponent(textField_27, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(disabledFieldKeyword3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(infoLabelComment2)
@@ -686,10 +807,10 @@ public class FontHighlightingFrame extends JFrame {
 									GroupLayout.PREFERRED_SIZE)
 							.addComponent(disabledFieldComment2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addComponent(label_18).addComponent(label_27)
-							.addComponent(textField_19, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(infoLabelKeyword4).addComponent(hashLabelKeyword4)
+							.addComponent(formattedFieldKeyword4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addComponent(textField_28, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(disabledFieldKeyword4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(infoLabelFunction1)
@@ -698,10 +819,10 @@ public class FontHighlightingFrame extends JFrame {
 									GroupLayout.PREFERRED_SIZE)
 							.addComponent(disabledFieldFunction1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addComponent(label_19).addComponent(label_28)
-							.addComponent(textField_20, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(infoLabelKeyword5).addComponent(hashLabelKeyword5)
+							.addComponent(formattedFieldKeyword5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addComponent(textField_29, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(disabledFieldKeyword5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(infoLabelFunction2)
@@ -710,10 +831,10 @@ public class FontHighlightingFrame extends JFrame {
 									GroupLayout.PREFERRED_SIZE)
 							.addComponent(disabledFieldFunction2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addComponent(label_20).addComponent(label_29)
-							.addComponent(textField_21, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(infoLabelKeyword6).addComponent(hashLabelKeyword6)
+							.addComponent(formattedFieldKeyword6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addComponent(textField_30, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(disabledFieldKeyword6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(infoLabelFunction3)
@@ -722,10 +843,10 @@ public class FontHighlightingFrame extends JFrame {
 									GroupLayout.PREFERRED_SIZE)
 							.addComponent(disabledFieldFunction3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addComponent(label_21).addComponent(label_30)
-							.addComponent(textField_22, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(infoLabelLabel).addComponent(hashLabelLabel)
+							.addComponent(formattedFieldLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addComponent(textField_31, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(disabledFieldLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(infoLabelFunction4)
@@ -734,10 +855,10 @@ public class FontHighlightingFrame extends JFrame {
 									GroupLayout.PREFERRED_SIZE)
 							.addComponent(disabledFieldFunction4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addComponent(label_22).addComponent(label_31)
-							.addComponent(textField_23, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(infoLabelLiteral1).addComponent(hashLabelLiteral1)
+							.addComponent(formattedFieldLiteral1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addComponent(textField_32, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(disabledFieldLiteral1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(infoLabelInvalid)
@@ -746,10 +867,10 @@ public class FontHighlightingFrame extends JFrame {
 									GroupLayout.PREFERRED_SIZE)
 							.addComponent(disabledFieldInvalid, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addComponent(label_23).addComponent(label_32)
-							.addComponent(textField_24, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(infoLabelLiteral2).addComponent(hashLabelLiteral2)
+							.addComponent(formattedFieldLiteral2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addComponent(textField_33, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(disabledFieldLiteral2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(infoLabelKeyword1)
@@ -758,10 +879,10 @@ public class FontHighlightingFrame extends JFrame {
 									GroupLayout.PREFERRED_SIZE)
 							.addComponent(disabledFieldKeyword1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addComponent(label_24).addComponent(label_33)
-							.addComponent(textField_25, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(infoLabelOperator).addComponent(hashLabelOperator)
+							.addComponent(formattedFieldOperator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addComponent(textField_34, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(disabledFieldOperator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(infoLabelKeyword2)
@@ -770,10 +891,10 @@ public class FontHighlightingFrame extends JFrame {
 									GroupLayout.PREFERRED_SIZE)
 							.addComponent(disabledFieldKeyword2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addComponent(label_25).addComponent(label_34)
-							.addComponent(textField_26, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(infoLabelBgColor).addComponent(hashLabelBgColor)
+							.addComponent(formattedFieldBgColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE)
-							.addComponent(textField_35, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+							.addComponent(disabledFieldBgColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 									GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
 					.addComponent(bottomSeparator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
@@ -810,16 +931,76 @@ public class FontHighlightingFrame extends JFrame {
 		}
 	}
 
+	/**
+	 * Applies user changes to PDE preferences
+	 */
+
 	private void applyChanges() {
 		try {
+			/*
+			 * Using this approach because it automatically discards invalid
+			 * data typed in manually
+			 */
+
+			ToolHelpers.setPreference("comment1", disabledFieldComment1.getBackground());
+			ToolHelpers.setPreference("comment2", disabledFieldComment2.getBackground());
+			ToolHelpers.setPreference("function1", disabledFieldFunction1.getBackground());
+			ToolHelpers.setPreference("function2", disabledFieldFunction2.getBackground());
+			ToolHelpers.setPreference("function3", disabledFieldFunction3.getBackground());
+			ToolHelpers.setPreference("function4", disabledFieldFunction4.getBackground());
+			ToolHelpers.setPreference("invalid", disabledFieldInvalid.getBackground());
+			ToolHelpers.setPreference("keyword1", disabledFieldKeyword1.getBackground());
+			ToolHelpers.setPreference("keyword2", disabledFieldKeyword2.getBackground());
+			ToolHelpers.setPreference("keyword3", disabledFieldKeyword3.getBackground());
+			ToolHelpers.setPreference("keyword4", disabledFieldKeyword4.getBackground());
+			ToolHelpers.setPreference("keyword5", disabledFieldKeyword5.getBackground());
+			ToolHelpers.setPreference("keyword6", disabledFieldKeyword6.getBackground());
+			ToolHelpers.setPreference("label", disabledFieldLabel.getBackground());
+			ToolHelpers.setPreference("literal1", disabledFieldLiteral1.getBackground());
+			ToolHelpers.setPreference("literal2", disabledFieldLiteral2.getBackground());
+			ToolHelpers.setPreference("operator", disabledFieldOperator.getBackground());
+			ToolHelpers.setPreference("bgcolor", disabledFieldBgColor.getBackground());
+
+			JOptionPane.showMessageDialog(null, ToolConstants.RESTART_REQUIRED_MESSAGE,
+					ToolConstants.RESTART_REQUIRED_TITLE, JOptionPane.WARNING_MESSAGE);
+
 			disposeFrame();
 		} catch (Exception e) {
+			System.out.println(ToolConstants.APPLY_CHANGES_EXCEPTION);
 			e.printStackTrace();
 		}
-
 	}
 
-	public void disposeFrame() {
+	/**
+	 * Resets the field values to current PDE preferences
+	 */
+	private void discardChanges() {
+		try {
+			formattedFieldComment1.setText(ToolHelpers.extractColorString("comment1"));
+			formattedFieldComment2.setText(ToolHelpers.extractColorString("comment2"));
+			formattedFieldFunction1.setText(ToolHelpers.extractColorString("function1"));
+			formattedFieldFunction2.setText(ToolHelpers.extractColorString("function2"));
+			formattedFieldFunction3.setText(ToolHelpers.extractColorString("function3"));
+			formattedFieldFunction4.setText(ToolHelpers.extractColorString("function4"));
+			formattedFieldInvalid.setText(ToolHelpers.extractColorString("invalid"));
+			formattedFieldKeyword1.setText(ToolHelpers.extractColorString("keyword1"));
+			formattedFieldKeyword2.setText(ToolHelpers.extractColorString("keyword2"));
+			formattedFieldKeyword3.setText(ToolHelpers.extractColorString("keyword3"));
+			formattedFieldKeyword4.setText(ToolHelpers.extractColorString("keyword4"));
+			formattedFieldKeyword5.setText(ToolHelpers.extractColorString("keyword5"));
+			formattedFieldKeyword6.setText(ToolHelpers.extractColorString("keyword6"));
+			formattedFieldLabel.setText(ToolHelpers.extractColorString("label"));
+			formattedFieldLiteral1.setText(ToolHelpers.extractColorString("literal1"));
+			formattedFieldLiteral2.setText(ToolHelpers.extractColorString("literal2"));
+			formattedFieldOperator.setText(ToolHelpers.extractColorString("operator"));
+			formattedFieldBgColor.setText(ToolHelpers.extractColorString("bgcolor"));
+		} catch (Exception e) {
+			System.out.println(ToolConstants.DISCARD_CHANGES_EXCEPTION);
+			e.printStackTrace();
+		}
+	}
+
+	private void disposeFrame() {
 		dispose();
 	}
 }
