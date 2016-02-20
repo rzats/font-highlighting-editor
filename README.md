@@ -2,7 +2,7 @@
 
 Font Highlighting Editor is a [Processing](http://www.processing.org) tool that acts as a simple visual editor for the environment's font coloring settings.
 
-![Font Highlighting Editor v. 1.0.0](https://i.imgur.com/c9EzCsi.png)
+![Font Highlighting Editor v. 1.0.0](https://i.imgur.com/pKWzAAW.png)
 
 ## Installation - Automatic
 
