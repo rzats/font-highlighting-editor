@@ -1,5 +1,5 @@
 /**
- * Font Highlighting Editor for Processing
+ * Part of the Font Highlighting Editor for Processing
  *
  * ##copyright##
  *
@@ -42,7 +42,8 @@ import fonthighlightingeditor.utils.*;
 public class FontHighlightingFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 
-	// private Base base;
+	// Unused
+	private Base base;
 
 	private GroupLayout layout;
 	private JFormattedTextField formattedFieldComment1;
@@ -103,7 +104,7 @@ public class FontHighlightingFrame extends JFrame {
 	private ColorChooser colorChooserBgColor;
 
 	public FontHighlightingFrame(Base base) {
-		// this.base = base;
+		this.base = base;
 
 		setupFrame();
 	}
@@ -552,6 +553,14 @@ public class FontHighlightingFrame extends JFrame {
 				}
 			});
 
+			// [Apply Defaults]
+			final JButton btnApplyDefaults = new JButton("Apply Defaults");
+			btnApplyDefaults.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					applyDefaults();
+				}
+			});
+
 			// [OK]
 			final JButton btnOK = new JButton("OK");
 			btnOK.addActionListener(new ActionListener() {
@@ -572,7 +581,8 @@ public class FontHighlightingFrame extends JFrame {
 			layout = new GroupLayout(getContentPane());
 			layout.setHorizontalGroup(layout.createParallelGroup(Alignment.LEADING)
 					.addGroup(layout.createSequentialGroup().addContainerGap().addComponent(btnDiscardChanges)
-							.addPreferredGap(ComponentPlacement.RELATED, 343, Short.MAX_VALUE).addComponent(btnOK)
+							.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnApplyDefaults)
+							.addPreferredGap(ComponentPlacement.RELATED, 283, Short.MAX_VALUE).addComponent(btnOK)
 							.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnCancel).addContainerGap())
 					.addComponent(bottomSeparator, GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
 					.addGroup(
@@ -900,7 +910,7 @@ public class FontHighlightingFrame extends JFrame {
 					.addComponent(bottomSeparator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 							GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(btnCancel).addComponent(btnOK)
-							.addComponent(btnDiscardChanges)).addContainerGap()));
+							.addComponent(btnApplyDefaults).addComponent(btnDiscardChanges)).addContainerGap()));
 			getContentPane().setLayout(layout);
 
 			// Wrapping up - set a preferred size, center the frame and display
@@ -996,6 +1006,35 @@ public class FontHighlightingFrame extends JFrame {
 			formattedFieldBgColor.setText(ToolHelpers.extractColorString("bgcolor"));
 		} catch (Exception e) {
 			System.out.println(ToolConstants.DISCARD_CHANGES_EXCEPTION);
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Resets the field values to default PDE preferences
+	 */
+	private void applyDefaults() {
+		try {
+			formattedFieldBgColor.setText(ToolHelpers.extractDefaultColorString("bgcolor"));
+			formattedFieldComment1.setText(ToolHelpers.extractDefaultColorString("comment1"));
+			formattedFieldComment2.setText(ToolHelpers.extractDefaultColorString("comment2"));
+			formattedFieldFunction1.setText(ToolHelpers.extractDefaultColorString("function1"));
+			formattedFieldFunction2.setText(ToolHelpers.extractDefaultColorString("function2"));
+			formattedFieldFunction3.setText(ToolHelpers.extractDefaultColorString("function3"));
+			formattedFieldFunction4.setText(ToolHelpers.extractDefaultColorString("function4"));
+			formattedFieldInvalid.setText(ToolHelpers.extractDefaultColorString("invalid"));
+			formattedFieldKeyword1.setText(ToolHelpers.extractDefaultColorString("keyword1"));
+			formattedFieldKeyword2.setText(ToolHelpers.extractDefaultColorString("keyword2"));
+			formattedFieldKeyword3.setText(ToolHelpers.extractDefaultColorString("keyword3"));
+			formattedFieldKeyword4.setText(ToolHelpers.extractDefaultColorString("keyword4"));
+			formattedFieldKeyword5.setText(ToolHelpers.extractDefaultColorString("keyword5"));
+			formattedFieldKeyword6.setText(ToolHelpers.extractDefaultColorString("keyword6"));
+			formattedFieldLabel.setText(ToolHelpers.extractDefaultColorString("label"));
+			formattedFieldLiteral1.setText(ToolHelpers.extractDefaultColorString("literal1"));
+			formattedFieldLiteral2.setText(ToolHelpers.extractDefaultColorString("literal2"));
+			formattedFieldOperator.setText(ToolHelpers.extractDefaultColorString("operator"));
+		} catch (Exception e) {
+			System.out.println(ToolConstants.APPLY_DEFAULTS_EXCEPTION);
 			e.printStackTrace();
 		}
 	}

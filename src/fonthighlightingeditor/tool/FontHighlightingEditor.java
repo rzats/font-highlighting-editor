@@ -1,5 +1,5 @@
 /**
- * Font Highlighting Editor for Processing
+ * Part of the Font Highlighting Editor for Processing
  *
  * ##copyright##
  *

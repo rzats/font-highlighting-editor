@@ -1,5 +1,5 @@
 /**
- * Font Highlighting Editor for Processing
+ * Part of the Font Highlighting Editor for Processing
  *
  * ##copyright##
  *
@@ -39,15 +39,15 @@ import processing.core.PApplet;
 import fonthighlightingeditor.utils.*;
 
 /**
- * Creates some repeatable controls in the frame
+ * Factory-ish class that creates some repeatable controls used in the frame
  */
 public class ComponentCreator {
 	/**
 	 * Creates a label containing info about a preference
 	 * 
 	 * @param preferenceName
-	 *            The name of the preference the label refers to
-	 * @return An instantiated label
+	 *            The name of the preference the label will be associated with
+	 * @return A label containing info about the preference
 	 */
 	public static JLabel createInfoLabel(String preferenceName) {
 		final JLabel label = new JLabel(preferenceName + ":");
@@ -70,8 +70,8 @@ public class ComponentCreator {
 	 * current color selection
 	 *
 	 * @param preferenceName
-	 *            The name of the preference the field refers to
-	 * @return An instantiated JFormattedTextField
+	 *            The name of the preference the field will be associated with
+	 * @return A disabled JTextField
 	 */
 	public static JTextField createDisabledTextField(String preferenceName) {
 		JTextField field = new JTextField(" ");
@@ -86,9 +86,9 @@ public class ComponentCreator {
 	 * Creates a formatted text field used to edit the preference
 	 *
 	 * @param preferenceName
-	 *            The name of the preference the field refers to
+	 *            The name of the preference the field will be associated with
 	 * @param textField
-	 *            A disabled JTextField
+	 *            A disabled JTextField associated with the preference
 	 * @return An instantiated JFormattedTextField
 	 */
 	public static JFormattedTextField createFormattedTextField(String preferenceName, final JTextField textField) {

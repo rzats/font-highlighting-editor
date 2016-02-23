@@ -1,5 +1,5 @@
 /**
- * Font Highlighting Editor for Processing
+ * Part of the Font Highlighting Editor for Processing
  *
  * ##copyright##
  *
@@ -53,14 +53,17 @@ public final class ToolConstants {
 	public static final String FRAME_SETUP_EXCEPTION = EXCEPTION_HEADER + "frame -> setupLayout()";
 	public static final String APPLY_CHANGES_EXCEPTION = EXCEPTION_HEADER + "frame -> applyChanges()";
 	public static final String DISCARD_CHANGES_EXCEPTION = EXCEPTION_HEADER + "frame -> discardChanges()";
+	public static final String APPLY_DEFAULTS_EXCEPTION = EXCEPTION_HEADER + "frame -> applyDefaults()";
+
 	// UI strings
 
 	public static final String TOOL_NAME = "##tool.name##";
-	public static final String STARTUP_INFO = TOOL_NAME + " v. ##tool.prettyVersion##\nby ##author.name##.\n"
-			+ "Please report any issues at ##source.url##\n";
+	public static final String STARTUP_INFO = TOOL_NAME + " v. ##tool.prettyVersion##" + System.lineSeparator()
+			+ "by ##author.name##." + System.lineSeparator() + "Please report any issues at ##source.url##"
+			+ System.lineSeparator() + System.lineSeparator();
 	public static final String HEADER_MESSAGE = "<html>Use this tool to modify PDE's font highlighting settings.<br>(Hover over the name of each setting to display info)</html>";
 	public static final String RESTART_REQUIRED_TITLE = "Warning";
-	public static final String RESTART_REQUIRED_MESSAGE = "Restart PDE to apply the changes.";
+	public static final String RESTART_REQUIRED_MESSAGE = "Please restart Processing to apply the changes.";
 
 	@SuppressWarnings("serial")
 	public static final Map<String, String> TOOLTIPS = new HashMap<String, String>() {
@@ -73,8 +76,8 @@ public final class ToolConstants {
 			 * TODO: some of these appear to be unused, do research
 			 */
 
-			put("comment1", "This can be used to mark a comment.");
-			put("comment2", "This can be used to mark a comment");
+			put("comment1", "Used to mark a comment");
+			put("comment2", "Used to mark a comment");
 			put("function1", "Functions");
 			put("function2", "Methods<br />(Functions inside a class)");
 			put("function3", "Loop/function-like blocks<br />(for, while etc)");
