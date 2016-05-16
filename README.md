@@ -1,7 +1,7 @@
 # Font Highlighting Editor for the Processing Development Environment
 
-[![GitHub Кelease](https://img.shields.io/github/release/rzats/font-highlighting-editor.svg?maxAge=259200)](https://github.com/rzats/font-highlighting-editor/)
-[![Github All Releases](https://img.shields.io/github/downloads/rzats/font-highlighting-editor/total.svg?maxAge=259200)](https://github.com/rzats/font-highlighting-editor/)
+[![GitHub Release](https://img.shields.io/github/release/rzats/font-highlighting-editor.svg?maxAge=259200)](https://github.com/rzats/font-highlighting-editor/releases/tag/latest/)
+[![Github All Releases](https://img.shields.io/github/downloads/rzats/font-highlighting-editor/total.svg?maxAge=259200)](https://github.com/rzats/font-highlighting-editor/releases/)
 
 Font Highlighting Editor is a [Processing](http://www.processing.org) tool that acts as a simple visual editor for the environment's font coloring settings.
 
