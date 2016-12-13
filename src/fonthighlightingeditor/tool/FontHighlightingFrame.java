@@ -928,7 +928,9 @@ public class FontHighlightingFrame extends JFrame {
 				setPreferredSize(new Dimension(650, 430));
 			}
 
-			setResizable(false);
+			setMinimumSize(new Dimension(580, 375));
+			setMaximumSize(new Dimension(700, 500));
+			setResizable(true);
 
 			pack();
 
